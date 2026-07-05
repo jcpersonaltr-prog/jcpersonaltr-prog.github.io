@@ -1,28 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
-import fs from 'node:fs';
+import dados from '../../data/galeria.json';
 
-// As imagens são detetadas automaticamente ao build:
-// coloca ficheiros .jpg/.png/.webp em
-//   public/images/galeria/fotos/     → separador "Fotos"
-//   public/images/galeria/prop-art/  → separador "Prop Art"
-function lerPasta(sub: string) {
-  try {
-    return fs
-      .readdirSync(`./public/images/galeria/${sub}`)
-      .filter((f) => /\.(jpe?g|png|webp)$/i.test(f))
-      .sort()
-      .map((f) => `/images/galeria/${sub}/${f}`);
-  } catch {
-    return [];
-  }
-}
-
-const fotos = lerPasta('fotos');
-const propArt = lerPasta('prop-art');
+// A galeria é gerida no painel /admin (Treino & Media → Galeria).
+// Cada item tem uma imagem e um grupo: "Fotos" (tratamento P&B) ou "Prop Art" (cores originais).
 const grupos = [
-  { nome: 'Fotos', imagens: fotos },
-  { nome: 'Prop Art', imagens: propArt },
+  { nome: 'Fotos', imagens: dados.itens.filter((i) => i.grupo === 'Fotos') },
+  { nome: 'Prop Art', imagens: dados.itens.filter((i) => i.grupo === 'Prop Art') },
 ];
 ---
 
@@ -46,12 +30,12 @@ const grupos = [
       {grupos.map((g, gi) => (
         <div class="galeria" data-grupo={g.nome} style={gi === 0 ? '' : 'display:none'}>
           {g.imagens.length === 0 && (
-            <p class="vazio">Sem imagens ainda — coloca ficheiros em <code>public/images/galeria/{g.nome === 'Fotos' ? 'fotos' : 'prop-art'}/</code>.</p>
+            <p class="vazio">Sem imagens ainda — adiciona-as no painel /admin, em Treino & Media → Galeria.</p>
           )}
           <div class="grid">
-            {g.imagens.map((src) => (
-              <button class="celula" data-src={src}>
-                <img src={src} alt="" loading="lazy" class:list={[{ bw: g.nome === 'Fotos' }]} />
+            {g.imagens.map((item) => (
+              <button class="celula" data-src={encodeURI(item.imagem)}>
+                <img src={encodeURI(item.imagem)} alt={item.legenda ?? ''} loading="lazy" class:list={[{ bw: g.nome === 'Fotos' }]} />
               </button>
             ))}
           </div>

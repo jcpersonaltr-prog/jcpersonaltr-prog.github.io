@@ -93,6 +93,20 @@ collections:
                   - { name: nome, label: Exercício, widget: string }
                   - { name: dose, label: Séries/reps, widget: string, hint: "Ex.: 4 × 10" }
 
+
+      - name: galeria
+        label: Galeria (página Media)
+        file: src/data/galeria.json
+        fields:
+          - name: itens
+            label: Imagens da galeria
+            widget: list
+            summary: "{{fields.grupo}} — {{fields.imagem}}"
+            fields:
+              - { name: imagem, label: Imagem, widget: image }
+              - { name: grupo, label: Grupo, widget: select, options: [Fotos, "Prop Art"], hint: "Fotos ganham tratamento P&B automático; Prop Art mantém as cores." }
+              - { name: legenda, label: Legenda (opcional), widget: string, required: false }
+
       - name: desafios
         label: Desafios mensais (página Treino)
         file: src/data/desafios.json
