@@ -9,7 +9,7 @@ backend:
   repo: jcpersonaltr-prog/jcpersonaltr-prog.github.io
   branch: main
   # Substitui pelo URL do teu Cloudflare Worker (ver GUIA-LANCAMENTO.md, Parte B):
-  base_url: https://SUBSTITUI-PELO-TEU-WORKER.workers.dev
+  base_url: https://tiny-sunset-e57b.jcpersonaltr.workers.dev
 
 media_folder: public/images/uploads
 public_folder: /images/uploads
