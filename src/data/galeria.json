@@ -1,32 +1,64 @@
 {
   "itens": [
     {
+      "imagem": "/images/uploads/F1000022.JPG",
+      "grupo": "Fotos",
+      "legenda": ""
+    },
+    {
+      "imagem": "/images/uploads/dips.jpg",
+      "grupo": "Fotos",
+      "legenda": ""
+    },
+    {
+      "imagem": "/images/uploads/1912409_10201802619066876_3688762638475295936_o.jpg",
+      "grupo": "Fotos",
+      "legenda": ""
+    },
+    {
+      "imagem": "/images/uploads/bike.jpg",
+      "grupo": "Fotos",
+      "legenda": ""
+    },
+    {
+      "imagem": "/images/uploads/DSC02875 copy.jpg",
+      "grupo": "Fotos",
+      "legenda": ""
+    },
+    {
       "imagem": "/images/uploads/03 home rig 03.jpg",
-      "grupo": "Fotos"
+      "grupo": "Fotos",
+      "legenda": ""
     },
     {
       "imagem": "/images/uploads/01 home rig 03.jpg",
-      "grupo": "Fotos"
+      "grupo": "Fotos",
+      "legenda": ""
     },
     {
       "imagem": "/images/uploads/014C6370_resize.JPG",
-      "grupo": "Fotos"
+      "grupo": "Fotos",
+      "legenda": ""
     },
     {
       "imagem": "/images/galeria/prop-art/a-experiencia-da-aulas.jpg",
-      "grupo": "Prop Art"
+      "grupo": "Prop Art",
+      "legenda": ""
     },
     {
       "imagem": "/images/galeria/prop-art/burrice-ate-ao-falho.jpg",
-      "grupo": "Prop Art"
+      "grupo": "Prop Art",
+      "legenda": ""
     },
     {
       "imagem": "/images/galeria/prop-art/capitao-volume.jpg",
-      "grupo": "Prop Art"
+      "grupo": "Prop Art",
+      "legenda": ""
     },
     {
       "imagem": "/images/galeria/prop-art/clientes-saudaveis-nunca-deram-lucro.jpg",
-      "grupo": "Prop Art"
+      "grupo": "Prop Art",
+      "legenda": ""
     },
     {
       "imagem": "/images/galeria/prop-art/conselhos-de-15-segundos.jpg",
