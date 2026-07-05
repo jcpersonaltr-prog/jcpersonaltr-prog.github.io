@@ -1,12 +1,14 @@
 ---
-titulo: "O que nos move?"
+titulo: O que nos move?
 numero: 1
 data: 2025-09-15
-resumo: "Sobre as desculpas que o subconsciente nos oferece — e a rede de dados a que só um corpo tratado consegue aceder."
-tags: ["editorial", "mindset"]
+resumo: Sobre as desculpas que o subconsciente nos oferece — e a rede de dados a que só um corpo tratado consegue aceder.
+tags:
+  - editorial
+  - mindset
 ---
 
-Naqueles dias em que nos levantamos, muitas vezes depois de uma noite mal dormida, o nosso subconsciente começa de imediato a manipular-nos no sentido de não termos vontade de fazer nada, oferecendo-nos uma desculpa "simpática" para essa falta de ação.
+Existem dias em que nos levantamos, muitas vezes depois de uma noite mal dormida, o nosso subconsciente começa de imediato a manipular-nos no sentido de não termos vontade de fazer nada, oferecendo-nos uma desculpa "simpática" para essa falta de ação.
 
 A grande maioria de nós segue esse instinto confortável do "estou muito cansado, não dormi bem e tenho andado com muito stress…". Esta é apenas uma das milhares de desculpas que todos os dias arranjamos para não fazer aquilo que realmente nos torna fortes, saudáveis e independentes.
 
