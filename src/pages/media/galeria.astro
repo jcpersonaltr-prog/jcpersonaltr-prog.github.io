@@ -1,0 +1,141 @@
+---
+import Base from '../../layouts/Base.astro';
+import fs from 'node:fs';
+
+// As imagens são detetadas automaticamente ao build:
+// coloca ficheiros .jpg/.png/.webp em
+//   public/images/galeria/fotos/     → separador "Fotos"
+//   public/images/galeria/prop-art/  → separador "Prop Art"
+function lerPasta(sub: string) {
+  try {
+    return fs
+      .readdirSync(`./public/images/galeria/${sub}`)
+      .filter((f) => /\.(jpe?g|png|webp)$/i.test(f))
+      .sort()
+      .map((f) => `/images/galeria/${sub}/${f}`);
+  } catch {
+    return [];
+  }
+}
+
+const fotos = lerPasta('fotos');
+const propArt = lerPasta('prop-art');
+const grupos = [
+  { nome: 'Fotos', imagens: fotos },
+  { nome: 'Prop Art', imagens: propArt },
+];
+---
+
+<Base title="Galeria" description="O arquivo visual do The Plasmik Report: fotografia a preto e branco e Prop Art.">
+  <section class="section grain">
+    <div class="wrap">
+      <p class="stamp">03 — Media / Galeria</p>
+      <h1>O arquivo visual.</h1>
+      <p class="lead">Fotografia tratada a preto e branco de alto contraste, e a propaganda visual do Report. Clica para ampliar.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="filter-row" role="group" aria-label="Escolher galeria">
+        {grupos.map((g, i) => (
+          <button class:list={['pillbtn', { on: i === 0 }]} data-value={g.nome}>{g.nome}</button>
+        ))}
+      </div>
+
+      {grupos.map((g, gi) => (
+        <div class="galeria" data-grupo={g.nome} style={gi === 0 ? '' : 'display:none'}>
+          {g.imagens.length === 0 && (
+            <p class="vazio">Sem imagens ainda — coloca ficheiros em <code>public/images/galeria/{g.nome === 'Fotos' ? 'fotos' : 'prop-art'}/</code>.</p>
+          )}
+          <div class="grid">
+            {g.imagens.map((src) => (
+              <button class="celula" data-src={src}>
+                <img src={src} alt="" loading="lazy" class:list={[{ bw: g.nome === 'Fotos' }]} />
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <dialog id="lightbox">
+    <button id="fechar" aria-label="Fechar">×</button>
+    <img id="grande" src="" alt="Imagem ampliada" />
+  </dialog>
+</Base>
+
+<script>
+  const botoes = document.querySelectorAll('.pillbtn');
+  const galerias = document.querySelectorAll('.galeria');
+  botoes.forEach((b) => {
+    b.addEventListener('click', () => {
+      botoes.forEach((x) => x.classList.toggle('on', x === b));
+      galerias.forEach((g) => {
+        g.style.display = g.dataset.grupo === b.dataset.value ? '' : 'none';
+      });
+    });
+  });
+
+  const lb = document.getElementById('lightbox');
+  const grande = document.getElementById('grande');
+  document.querySelectorAll('.celula').forEach((c) => {
+    c.addEventListener('click', () => {
+      grande.src = c.dataset.src;
+      lb.showModal();
+    });
+  });
+  document.getElementById('fechar').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', (e) => { if (e.target === lb) lb.close(); });
+</script>
+
+<style>
+  .lead { color: var(--muted); max-width: 540px; margin-top: 14px; }
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+  .pillbtn {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 5px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .pillbtn:hover { border-color: var(--amber); color: var(--paper); }
+  .pillbtn.on { border-color: var(--amber); color: var(--amber); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .celula {
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    background: var(--panel);
+    cursor: zoom-in;
+    aspect-ratio: 1;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+  }
+  .celula:hover { border-color: var(--amber); }
+  .celula img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vazio { color: var(--faint); font-size: 14px; }
+  dialog {
+    background: var(--ink);
+    border: 1px solid var(--line-strong);
+    padding: 12px;
+    max-width: min(92vw, 1000px);
+  }
+  dialog::backdrop { background: rgba(0, 0, 0, 0.85); }
+  dialog img { max-width: 100%; max-height: 82vh; display: block; }
+  #fechar {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--amber);
+    font-size: 26px;
+    cursor: pointer;
+    line-height: 1;
+  }
+</style>

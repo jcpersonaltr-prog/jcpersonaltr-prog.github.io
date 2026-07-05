@@ -1,0 +1,80 @@
+---
+import Base from '../../layouts/Base.astro';
+
+import dados from '../../data/desafios.json';
+const desafios = dados.desafios;
+
+const atual = desafios.find((d) => d.atual);
+const arquivo = desafios.filter((d) => !d.atual);
+---
+
+<Base title="Desafios Mensais" description="O desafio do mês do The Plasmik Report. Um objetivo, um mês, zero desculpas.">
+  <section class="section grain">
+    <div class="wrap">
+      <p class="stamp">02 — Treino / Desafios</p>
+      <h1>Um mês. Um objetivo.<br />Zero desculpas.</h1>
+      <p class="lead">Todos os meses, um desafio novo. Partilha o progresso na comunidade.</p>
+    </div>
+  </section>
+
+  {atual && (
+    <section class="section">
+      <div class="wrap">
+        <p class="stamp">Desafio ativo — {atual.mes}</p>
+        <div class="card ativo">
+          <h2>{atual.titulo}</h2>
+          <p class="regras">{atual.regras}</p>
+          <ul>
+            {atual.exercicios.map((e) => (
+              <li><span class="ex">{e.nome}</span><span class="dose">{e.dose}</span></li>
+            ))}
+          </ul>
+          <a class="btn btn--amber" href="/comunidade/">Aceito o desafio</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="wrap">
+      <p class="stamp stamp--faint">Arquivo</p>
+      <div class="lista">
+        {arquivo.map((d) => (
+          <div class="card">
+            <p class="mes">{d.mes}</p>
+            <h3>{d.titulo}</h3>
+            <p class="regras-arq">{d.regras}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lead { color: var(--muted); max-width: 520px; margin-top: 14px; }
+  .ativo { border-color: var(--amber); padding: clamp(24px, 4vw, 40px); }
+  .ativo h2 { margin-bottom: 12px; }
+  .regras { color: var(--muted); max-width: 560px; font-size: 15px; }
+  ul { list-style: none; margin: 16px 0 24px; padding: 0; max-width: 480px; }
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .ex { color: var(--paper); }
+  .dose { color: var(--amber); font-family: var(--font-display); font-size: 13px; }
+  .lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .mes {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 8px;
+  }
+  .regras-arq { font-size: 14px; color: var(--muted); margin: 8px 0 0; }
+</style>

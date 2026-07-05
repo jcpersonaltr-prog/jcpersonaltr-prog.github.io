@@ -1,0 +1,114 @@
+# =====================================================
+# Painel de gestão do The Plasmik Report (Sveltia CMS)
+# Cada coleção espelha o schema do site — o design é
+# intocável a partir daqui, só se editam conteúdos.
+# =====================================================
+
+backend:
+  name: github
+  repo: jcpersonaltr-prog/jcpersonaltr-prog.github.io
+  branch: main
+  # Substitui pelo URL do teu Cloudflare Worker (ver GUIA-LANCAMENTO.md, Parte B):
+  base_url: https://SUBSTITUI-PELO-TEU-WORKER.workers.dev
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: relatorio
+    label: Relatório
+    label_singular: Edição
+    folder: src/content/relatorio
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: titulo
+    summary: "Nº {{fields.numero}} — {{fields.titulo}}"
+    fields:
+      - { name: titulo, label: Título, widget: string }
+      - { name: numero, label: Número da edição, widget: number, value_type: int, min: 1, hint: "A edição com o número mais alto aparece em destaque na homepage." }
+      - { name: data, label: Data de publicação, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { name: resumo, label: Resumo (uma frase), widget: string }
+      - { name: tags, label: Tags, widget: list, required: false, default: [], hint: "Ex.: treino, saúde, truth uncovered" }
+      - { name: body, label: Corpo da edição, widget: markdown }
+
+  - name: tinta
+    label: Tinta
+    label_singular: Texto
+    folder: src/content/tinta
+    create: true
+    extension: md
+    format: frontmatter
+    identifier_field: titulo
+    summary: "{{fields.titulo}}"
+    fields:
+      - { name: titulo, label: Título, widget: string }
+      - { name: data, label: Data, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - name: tipo
+        label: Tipo de texto
+        widget: select
+        options:
+          - { label: Reflexão, value: reflexao }
+          - { label: Leafs From a Dead Tree, value: leafs }
+          - { label: Princípio, value: principio }
+      - { name: resumo, label: Resumo (opcional), widget: string, required: false }
+      - { name: body, label: Texto, widget: markdown }
+
+  - name: dados
+    label: Treino & Media
+    files:
+      - name: videos
+        label: Vídeos (página Media)
+        file: src/data/videos.json
+        fields:
+          - name: videos
+            label: Lista de vídeos
+            widget: list
+            summary: "{{fields.tipo}} — {{fields.titulo}}"
+            fields:
+              - { name: ytId, label: ID do YouTube, widget: string, hint: "No URL youtube.com/watch?v=ABC123, o ID é ABC123." }
+              - { name: titulo, label: Título, widget: string }
+              - { name: tipo, label: Tipo, widget: select, options: [Podcast, Clip] }
+
+      - name: fitcards
+        label: Fit Cards (página Treino)
+        file: src/data/fitcards.json
+        fields:
+          - name: cards
+            label: Cartões de treino
+            widget: list
+            summary: "{{fields.categoria}} — {{fields.titulo}}"
+            fields:
+              - { name: id, label: ID (único, sem espaços), widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - { name: categoria, label: Categoria, widget: string, hint: "Os filtros criam-se sozinhos a partir das categorias existentes." }
+              - { name: nivel, label: Nível, widget: select, options: [Iniciante, Intermédio, Avançado] }
+              - { name: tempo, label: Duração, widget: string, hint: "Ex.: 35 min" }
+              - { name: equipamento, label: Equipamento, widget: string }
+              - name: exercicios
+                label: Exercícios (nomes em inglês)
+                widget: list
+                summary: "{{fields.nome}} — {{fields.dose}}"
+                fields:
+                  - { name: nome, label: Exercício, widget: string }
+                  - { name: dose, label: Séries/reps, widget: string, hint: "Ex.: 4 × 10" }
+
+      - name: desafios
+        label: Desafios mensais (página Treino)
+        file: src/data/desafios.json
+        fields:
+          - name: desafios
+            label: Desafios
+            widget: list
+            summary: "{{fields.mes}} — {{fields.titulo}}"
+            fields:
+              - { name: mes, label: Mês, widget: string, hint: "Ex.: Julho 2026" }
+              - { name: titulo, label: Nome do desafio, widget: string }
+              - { name: regras, label: Regras, widget: text }
+              - name: exercicios
+                label: Exercícios
+                widget: list
+                fields:
+                  - { name: nome, label: Exercício, widget: string }
+                  - { name: dose, label: Dose diária, widget: string }
+              - { name: atual, label: "É o desafio ativo?", widget: boolean, default: false, hint: "Só um desafio deve estar ativo de cada vez." }

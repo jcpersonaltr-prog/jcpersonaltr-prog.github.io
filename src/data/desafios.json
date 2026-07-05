@@ -1,0 +1,28 @@
+{
+  "desafios": [
+    {
+      "mes": "Julho 2026",
+      "titulo": "The Century",
+      "regras": "100 push-ups por dia, divididos como quiseres, todos os dias do mês. Falhas um dia, recomeças a contagem.",
+      "exercicios": [
+        {
+          "nome": "Push-up (variação livre)",
+          "dose": "100/dia"
+        }
+      ],
+      "atual": true
+    },
+    {
+      "mes": "Junho 2026",
+      "titulo": "Dead Hang Protocol",
+      "regras": "Acumular 2 minutos de dead hang por dia, em quantas séries forem precisas. Pega firme, ombros ativos.",
+      "exercicios": [
+        {
+          "nome": "Dead Hang",
+          "dose": "2 min acumulados/dia"
+        }
+      ],
+      "atual": false
+    }
+  ]
+}

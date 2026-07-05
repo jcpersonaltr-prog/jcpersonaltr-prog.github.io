@@ -1,0 +1,142 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const edicoes = (await getCollection('relatorio')).sort((a, b) => b.data.numero - a.data.numero);
+const ultima = edicoes[0];
+const mes = ultima.data.data
+  .toLocaleDateString('pt-PT', { month: 'short', year: '2-digit' })
+  .replace('.', '')
+  .toUpperCase();
+
+const seccoes = [
+  {
+    num: '01',
+    title: 'Relatório',
+    href: '/relatorio/',
+    desc: 'Newsletters, artigos e Truth Uncovered. O arquivo completo, agora legível e pesquisável.',
+  },
+  {
+    num: '02',
+    title: 'Treino',
+    href: '/treino/',
+    desc: 'Fit cards, desafios mensais, temporizadores e tabela nutricional interativa.',
+  },
+  {
+    num: '04',
+    title: 'Tinta',
+    href: '/tinta/',
+    desc: 'Reflexões, Leafs From a Dead Tree e princípios. A escrita por trás do treino.',
+  },
+];
+---
+
+<Base title="Início">
+  <section class="hero grain">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="stamp">Manual de campo — Fitness uncovered</p>
+        <h1>O fitness sem filtros.<br />Sem ruído. Sem poses.</h1>
+        <p class="lead">
+          Treino, nutrição e pensamento crítico contra o mainstream da indústria.
+          Escrito por quem treina pessoas reais — não algoritmos.
+        </p>
+        <div class="actions">
+          <a class="btn btn--amber" href={`/relatorio/${ultima.id}/`}>Ler a última edição</a>
+          <a class="btn btn--ghost" href="/comunidade/">Entrar na comunidade</a>
+        </div>
+      </div>
+      <figure class="hero-photo">
+        <img
+          src="/images/hero.jpg"
+          alt="João Carvalho na sala de treino, retrato a preto e branco"
+          class="bw"
+          width="640"
+          height="800"
+          loading="eager"
+        />
+        <figcaption>Método Perfektus — Porto</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="stamp stamp--faint">Última edição — Nº {ultima.data.numero}</p>
+      <a class="card featured" href={`/relatorio/${ultima.id}/`}>
+        <span class="date-badge">
+          <span class="n">{String(ultima.data.data.getDate()).padStart(2, '0')}</span>
+          <span class="d">{mes}</span>
+        </span>
+        <span class="featured-body">
+          <h3>{ultima.data.titulo}</h3>
+          <p>{ultima.data.resumo}</p>
+          <span class="readlink">Ler a edição →</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-3">
+      {seccoes.map((s) => (
+        <a class="card" href={s.href}>
+          <span class="num">{s.num}</span>
+          <span class="card-title">{s.title}</span>
+          <p>{s.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    border-bottom: 1px solid var(--line);
+    padding: clamp(40px, 7vw, 80px) 0;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(24px, 5vw, 56px);
+    align-items: center;
+  }
+  .lead {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 18px 0 0;
+  }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .hero-photo { margin: 0; border: 1px solid var(--line-strong); padding: 10px; }
+  .hero-photo img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 80% 50%; }
+  .hero-photo figcaption {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-top: 8px;
+    text-align: right;
+  }
+  .featured { display: flex; gap: 20px; align-items: flex-start; }
+  .featured-body { flex: 1; min-width: 220px; }
+  .featured h3 { margin-bottom: 8px; }
+  .featured p { font-size: 14px; color: var(--muted); margin: 0 0 12px; }
+  .readlink {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  @media (max-width: 720px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-photo { max-width: 380px; }
+    .featured { flex-direction: column; }
+  }
+</style>

@@ -1,0 +1,147 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Tabela Nutricional" description="Base de dados nutricional pesquisável do The Plasmik Report — valores por 100 g.">
+  <section class="section grain">
+    <div class="wrap">
+      <p class="stamp">02 — Treino / Tabela Nutricional</p>
+      <h1>Os números dos alimentos.</h1>
+      <p class="lead">Pesquisa qualquer alimento e ordena por macro clicando no cabeçalho da coluna. Valores por 100 g.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="toolbar">
+        <label class="sr-only" for="q">Pesquisar alimento</label>
+        <input id="q" type="search" placeholder="Pesquisar alimento…" autocomplete="off" />
+        <a class="btn btn--ghost" href="/data/alimentos.csv" download>Descarregar CSV</a>
+      </div>
+      <p class="count" id="count" aria-live="polite"></p>
+      <div class="table-wrap">
+        <table id="tabela">
+          <thead><tr id="cabecalho"></tr></thead>
+          <tbody id="corpo"></tbody>
+        </table>
+      </div>
+      <p class="nota" id="erro" hidden>Não foi possível carregar a tabela. Confirma que o ficheiro <code>public/data/alimentos.csv</code> existe.</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Lê /data/alimentos.csv (deteta ; ou , como separador) e constrói
+  // uma tabela pesquisável e ordenável. Para atualizar os dados,
+  // basta substituir o ficheiro CSV — as colunas são detetadas sozinhas.
+  const cab = document.getElementById('cabecalho');
+  const corpo = document.getElementById('corpo');
+  const q = document.getElementById('q');
+  const count = document.getElementById('count');
+
+  let linhas = [], colunas = [], ordem = { col: -1, asc: true };
+
+  function parseCSV(texto) {
+    const brutas = texto.trim().split(/\r?\n/).filter((l) => l.trim() !== '');
+    const sep = (brutas[0].match(/;/g) || []).length >= (brutas[0].match(/,/g) || []).length ? ';' : ',';
+    colunas = brutas[0].split(sep).map((c) => c.trim());
+    linhas = brutas.slice(1).map((l) => l.split(sep).map((c) => c.trim()));
+  }
+
+  function numero(v) {
+    const n = parseFloat(String(v).replace(',', '.'));
+    return isNaN(n) ? null : n;
+  }
+
+  function render() {
+    const termo = q.value.trim().toLowerCase();
+    let visiveis = linhas.filter((l) => !termo || l[0].toLowerCase().includes(termo));
+
+    if (ordem.col >= 0) {
+      visiveis = [...visiveis].sort((a, b) => {
+        const na = numero(a[ordem.col]), nb = numero(b[ordem.col]);
+        let r;
+        if (na !== null && nb !== null) r = na - nb;
+        else r = String(a[ordem.col]).localeCompare(String(b[ordem.col]), 'pt');
+        return ordem.asc ? r : -r;
+      });
+    }
+
+    corpo.innerHTML = visiveis
+      .map((l) => `<tr>${l.map((c, i) => `<td class="${i === 0 ? 'nome' : 'num'}">${c}</td>`).join('')}</tr>`)
+      .join('');
+    count.textContent = visiveis.length === 1 ? '1 alimento' : `${visiveis.length} alimentos`;
+  }
+
+  function renderCabecalho() {
+    cab.innerHTML = colunas
+      .map((c, i) => `<th scope="col"><button data-i="${i}">${c}<span class="seta" aria-hidden="true"></span></button></th>`)
+      .join('');
+    cab.querySelectorAll('button').forEach((b) => {
+      b.addEventListener('click', () => {
+        const i = +b.dataset.i;
+        if (ordem.col === i) ordem.asc = !ordem.asc;
+        else { ordem.col = i; ordem.asc = i === 0; }
+        cab.querySelectorAll('button').forEach((x) => x.classList.remove('asc', 'desc'));
+        b.classList.add(ordem.asc ? 'asc' : 'desc');
+        render();
+      });
+    });
+  }
+
+  fetch('/data/alimentos.csv')
+    .then((r) => { if (!r.ok) throw new Error(); return r.text(); })
+    .then((t) => { parseCSV(t); renderCabecalho(); render(); })
+    .catch(() => { document.getElementById('erro').hidden = false; });
+
+  q.addEventListener('input', render);
+</script>
+
+<style>
+  .lead { color: var(--muted); max-width: 560px; margin-top: 14px; }
+  .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  input[type='search'] {
+    flex: 1;
+    min-width: 220px;
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--paper);
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 11px 16px;
+  }
+  input[type='search']::placeholder { color: var(--faint); }
+  input[type='search']:focus { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .count {
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--faint);
+    margin: 16px 0;
+  }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line-strong); }
+  table { width: 100%; border-collapse: collapse; min-width: 560px; }
+  th { text-align: left; border-bottom: 1px solid var(--line-strong); background: var(--panel); }
+  th button {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--faint);
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 12px 14px;
+    text-align: left;
+    cursor: pointer;
+  }
+  th button:hover { color: var(--amber); }
+  th button.asc .seta::after { content: ' ↑'; color: var(--amber); }
+  th button.desc .seta::after { content: ' ↓'; color: var(--amber); }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 14px; }
+  td.nome { color: var(--paper); }
+  td.num { color: var(--muted); font-variant-numeric: tabular-nums; }
+  tr:hover td { background: var(--panel); }
+  .nota { margin-top: 16px; color: var(--blood); font-size: 14px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>

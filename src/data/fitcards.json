@@ -1,0 +1,262 @@
+{
+  "cards": [
+    {
+      "id": "trx-total-01",
+      "titulo": "TRX Total Body",
+      "categoria": "TRX",
+      "nivel": "Intermédio",
+      "tempo": "35 min",
+      "equipamento": "TRX",
+      "exercicios": [
+        {
+          "nome": "TRX Atomic Push-up",
+          "dose": "4 × 10"
+        },
+        {
+          "nome": "TRX Row",
+          "dose": "4 × 12"
+        },
+        {
+          "nome": "TRX Pistol Squat (assisted)",
+          "dose": "3 × 8/lado"
+        },
+        {
+          "nome": "TRX Fallout",
+          "dose": "3 × 10"
+        },
+        {
+          "nome": "TRX Sprinter Start",
+          "dose": "3 × 12/lado"
+        }
+      ]
+    },
+    {
+      "id": "cal-base-01",
+      "titulo": "Calisténicos — Fundação",
+      "categoria": "Calisténicos",
+      "nivel": "Iniciante",
+      "tempo": "30 min",
+      "equipamento": "Peso corporal + barra",
+      "exercicios": [
+        {
+          "nome": "Incline Push-up",
+          "dose": "4 × 12"
+        },
+        {
+          "nome": "Australian Pull-up",
+          "dose": "4 × 8"
+        },
+        {
+          "nome": "Box Squat",
+          "dose": "4 × 15"
+        },
+        {
+          "nome": "Plank Shoulder Tap",
+          "dose": "3 × 20"
+        },
+        {
+          "nome": "Hollow Body Hold",
+          "dose": "3 × 30s"
+        }
+      ]
+    },
+    {
+      "id": "kb-forca-01",
+      "titulo": "Kettlebell — Força & Potência",
+      "categoria": "Kettlebell",
+      "nivel": "Avançado",
+      "tempo": "40 min",
+      "equipamento": "Kettlebell",
+      "exercicios": [
+        {
+          "nome": "Kettlebell Swing",
+          "dose": "5 × 15"
+        },
+        {
+          "nome": "Turkish Get-up",
+          "dose": "3 × 3/lado"
+        },
+        {
+          "nome": "Goblet Squat",
+          "dose": "4 × 10"
+        },
+        {
+          "nome": "Single-arm Clean & Press",
+          "dose": "4 × 6/lado"
+        },
+        {
+          "nome": "Farmer Carry",
+          "dose": "4 × 40 m"
+        }
+      ]
+    },
+    {
+      "id": "burn-01",
+      "titulo": "The Burn — Sessão 12'",
+      "categoria": "The Burn",
+      "nivel": "Intermédio",
+      "tempo": "12 min",
+      "equipamento": "Peso corporal",
+      "exercicios": [
+        {
+          "nome": "Burpee",
+          "dose": "AMRAP 45s / 15s off"
+        },
+        {
+          "nome": "Jump Squat",
+          "dose": "AMRAP 45s / 15s off"
+        },
+        {
+          "nome": "Mountain Climber",
+          "dose": "AMRAP 45s / 15s off"
+        },
+        {
+          "nome": "Push-up to Down Dog",
+          "dose": "AMRAP 45s / 15s off"
+        }
+      ]
+    },
+    {
+      "id": "hip-upper-01",
+      "titulo": "Hipertrofia — Upper",
+      "categoria": "Hipertrofia",
+      "nivel": "Intermédio",
+      "tempo": "50 min",
+      "equipamento": "Halteres + banco",
+      "exercicios": [
+        {
+          "nome": "Incline Dumbbell Press",
+          "dose": "4 × 8-10"
+        },
+        {
+          "nome": "One-arm Dumbbell Row",
+          "dose": "4 × 10/lado"
+        },
+        {
+          "nome": "Seated Arnold Press",
+          "dose": "3 × 10"
+        },
+        {
+          "nome": "Incline Dumbbell Curl",
+          "dose": "3 × 12"
+        },
+        {
+          "nome": "Overhead Triceps Extension",
+          "dose": "3 × 12"
+        }
+      ]
+    },
+    {
+      "id": "func-01",
+      "titulo": "Funcional — Circuito Global",
+      "categoria": "Funcional",
+      "nivel": "Iniciante",
+      "tempo": "30 min",
+      "equipamento": "Halteres leves + step",
+      "exercicios": [
+        {
+          "nome": "Step-up",
+          "dose": "3 × 10/lado"
+        },
+        {
+          "nome": "Romanian Deadlift",
+          "dose": "3 × 12"
+        },
+        {
+          "nome": "Standing Overhead Press",
+          "dose": "3 × 10"
+        },
+        {
+          "nome": "Bird Dog",
+          "dose": "3 × 10/lado"
+        },
+        {
+          "nome": "Suitcase Carry",
+          "dose": "3 × 30 m/lado"
+        }
+      ]
+    },
+    {
+      "id": "cf-01",
+      "titulo": "CrossFit — Engine Builder",
+      "categoria": "CrossFit / Hyrox",
+      "nivel": "Avançado",
+      "tempo": "25 min",
+      "equipamento": "Remo + wall ball + barra",
+      "exercicios": [
+        {
+          "nome": "Row",
+          "dose": "5 rondas × 500 m"
+        },
+        {
+          "nome": "Wall Ball Shot",
+          "dose": "5 × 15"
+        },
+        {
+          "nome": "Deadlift",
+          "dose": "5 × 8"
+        },
+        {
+          "nome": "Burpee Over Bar",
+          "dose": "5 × 10"
+        }
+      ]
+    },
+    {
+      "id": "mob-01",
+      "titulo": "Mobilidade & Core — Reset",
+      "categoria": "Mobilidade & Core",
+      "nivel": "Iniciante",
+      "tempo": "20 min",
+      "equipamento": "Tapete",
+      "exercicios": [
+        {
+          "nome": "Cat-Cow",
+          "dose": "2 × 10"
+        },
+        {
+          "nome": "World's Greatest Stretch",
+          "dose": "2 × 5/lado"
+        },
+        {
+          "nome": "Dead Bug",
+          "dose": "3 × 10/lado"
+        },
+        {
+          "nome": "Side Plank",
+          "dose": "3 × 30s/lado"
+        },
+        {
+          "nome": "90/90 Hip Switch",
+          "dose": "2 × 10"
+        }
+      ]
+    },
+    {
+      "id": "trx-core-01",
+      "titulo": "TRX — Core Assault",
+      "categoria": "TRX",
+      "nivel": "Avançado",
+      "tempo": "25 min",
+      "equipamento": "TRX",
+      "exercicios": [
+        {
+          "nome": "TRX Pike",
+          "dose": "4 × 10"
+        },
+        {
+          "nome": "TRX Body Saw",
+          "dose": "4 × 12"
+        },
+        {
+          "nome": "TRX Oblique Crunch",
+          "dose": "3 × 10/lado"
+        },
+        {
+          "nome": "TRX Plank Hold",
+          "dose": "3 × 45s"
+        }
+      ]
+    }
+  ]
+}

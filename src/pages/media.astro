@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+
+const areas = [
+  {
+    href: '/media/videos/',
+    title: 'Vídeos',
+    desc: 'Podcasts completos e clips parciais — conversas longas e os momentos essenciais.',
+  },
+  {
+    href: '/media/galeria/',
+    title: 'Galeria',
+    desc: 'Fotografia a preto e branco de alto contraste e a Prop Art do Report.',
+  },
+];
+---
+
+<Base title="Media" description="Podcasts, clips, fotografia e Prop Art do The Plasmik Report.">
+  <section class="section grain">
+    <div class="wrap">
+      <p class="stamp">03 — Media</p>
+      <h1>Ver e ouvir.</h1>
+      <p class="lead">O Report também se ouve e também se vê.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap grid">
+      {areas.map((a) => (
+        <a class="card" href={a.href}>
+          <span class="card-title">{a.title}</span>
+          <p>{a.desc}</p>
+          <span class="go">Abrir →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lead { color: var(--muted); max-width: 520px; margin-top: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .go {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+</style>

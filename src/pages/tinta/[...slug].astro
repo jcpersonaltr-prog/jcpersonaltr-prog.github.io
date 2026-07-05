@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const textos = await getCollection('tinta');
+  return textos.map((t) => ({
+    params: { slug: t.id },
+    props: { texto: t },
+  }));
+}
+
+const { texto } = Astro.props;
+const { Content } = await render(texto);
+
+const rotulos: Record<string, string> = {
+  reflexao: 'Reflexão',
+  leafs: 'Leafs From a Dead Tree',
+  principio: 'Princípio',
+};
+
+const fmt = texto.data.data.toLocaleDateString('pt-PT', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<Base title={texto.data.titulo} description={texto.data.resumo ?? texto.data.titulo}>
+  <article>
+    <header class="section grain">
+      <div class="wrap centro">
+        <p class="stamp">{rotulos[texto.data.tipo]} — {fmt}</p>
+        <h1>{texto.data.titulo}</h1>
+      </div>
+    </header>
+    <div class="section">
+      <div class="wrap centro">
+        <div class="prose literaria">
+          <Content />
+        </div>
+        <p class="fim" aria-hidden="true">◆</p>
+        <p class="back"><a href="/tinta/">← Voltar à Tinta</a></p>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .centro { max-width: 720px; }
+  .literaria {
+    font-size: 18px;
+    line-height: 1.9;
+  }
+  .fim {
+    text-align: center;
+    color: var(--amber);
+    font-size: 13px;
+    margin: 48px 0 0;
+  }
+  .back {
+    margin-top: 32px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+</style>

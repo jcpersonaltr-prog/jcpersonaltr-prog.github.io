@@ -1,0 +1,246 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Temporizador" description="Perfektus Timer — temporizador HIIT, Tabata e intervalos, com sinais sonoros.">
+  <section class="section grain">
+    <div class="wrap">
+      <p class="stamp">02 — Treino / Temporizador</p>
+      <h1>Perfektus Timer.</h1>
+      <p class="lead">Trabalho, descanso, rondas. Sinais sonoros nos últimos 3 segundos e em cada transição. Sem app, sem conta, sem desculpas.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap timer-grid">
+      <div class="display-box" id="displayBox">
+        <p class="phase" id="phase">PRONTO</p>
+        <p class="time" id="time">00:00</p>
+        <p class="round" id="round">&nbsp;</p>
+        <div class="controls">
+          <button class="btn btn--amber" id="startBtn">Começar</button>
+          <button class="btn btn--ghost" id="resetBtn">Repor</button>
+        </div>
+      </div>
+
+      <div class="config">
+        <p class="stamp stamp--faint">Configuração</p>
+        <div class="presets">
+          <button class="pillbtn" data-w="20" data-r="10" data-n="8" data-p="10">Tabata 20/10 × 8</button>
+          <button class="pillbtn" data-w="30" data-r="30" data-n="10" data-p="10">30/30 × 10</button>
+          <button class="pillbtn" data-w="40" data-r="20" data-n="10" data-p="10">40/20 × 10</button>
+          <button class="pillbtn" data-w="60" data-r="0" data-n="10" data-p="10">EMOM 10'</button>
+        </div>
+        <div class="fields">
+          <label>Trabalho (s)<input type="number" id="work" value="30" min="5" max="600" /></label>
+          <label>Descanso (s)<input type="number" id="rest" value="15" min="0" max="600" /></label>
+          <label>Rondas<input type="number" id="rounds" value="8" min="1" max="50" /></label>
+          <label>Preparação (s)<input type="number" id="prep" value="10" min="0" max="60" /></label>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const phaseEl = $('phase'), timeEl = $('time'), roundEl = $('round');
+  const startBtn = $('startBtn'), resetBtn = $('resetBtn');
+  const box = $('displayBox');
+
+  let ctx = null;
+  function beep(freq = 880, dur = 0.12) {
+    try {
+      ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'square';
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0.15, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+      o.connect(g).connect(ctx.destination);
+      o.start();
+      o.stop(ctx.currentTime + dur);
+    } catch (e) { /* sem áudio disponível */ }
+  }
+
+  let plano = [], idx = 0, restante = 0, timer = null, aCorrer = false;
+
+  function fmt(s) {
+    const m = Math.floor(s / 60), r = s % 60;
+    return `${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}`;
+  }
+
+  function construirPlano() {
+    const w = +$('work').value, r = +$('rest').value, n = +$('rounds').value, p = +$('prep').value;
+    plano = [];
+    if (p > 0) plano.push({ nome: 'PREPARA', dur: p, tipo: 'prep' });
+    for (let i = 1; i <= n; i++) {
+      plano.push({ nome: 'TRABALHO', dur: w, tipo: 'work', ronda: i, total: n });
+      if (r > 0 && i < n) plano.push({ nome: 'DESCANSO', dur: r, tipo: 'rest', ronda: i, total: n });
+    }
+  }
+
+  function pintar() {
+    const f = plano[idx];
+    phaseEl.textContent = f.nome;
+    timeEl.textContent = fmt(restante);
+    roundEl.innerHTML = f.ronda ? `Ronda ${f.ronda} / ${f.total}` : '&nbsp;';
+    box.dataset.tipo = f.tipo;
+  }
+
+  function tick() {
+    restante--;
+    if (restante <= 3 && restante > 0) beep(880, 0.1);
+    if (restante <= 0) {
+      idx++;
+      if (idx >= plano.length) {
+        beep(440, 0.5); setTimeout(() => beep(440, 0.5), 250);
+        terminar();
+        return;
+      }
+      beep(plano[idx].tipo === 'work' ? 1200 : 600, 0.25);
+      restante = plano[idx].dur;
+    }
+    pintar();
+  }
+
+  function comecar() {
+    if (aCorrer) { pausar(); return; }
+    if (plano.length === 0 || idx >= plano.length) {
+      construirPlano();
+      idx = 0;
+      restante = plano[0].dur;
+    }
+    beep(1200, 0.2);
+    pintar();
+    aCorrer = true;
+    startBtn.textContent = 'Pausar';
+    timer = setInterval(tick, 1000);
+  }
+
+  function pausar() {
+    aCorrer = false;
+    clearInterval(timer);
+    startBtn.textContent = 'Continuar';
+    phaseEl.textContent = 'PAUSA';
+  }
+
+  function terminar() {
+    aCorrer = false;
+    clearInterval(timer);
+    plano = []; idx = 0;
+    phaseEl.textContent = 'FEITO.';
+    timeEl.textContent = '00:00';
+    roundEl.innerHTML = '&nbsp;';
+    box.dataset.tipo = 'done';
+    startBtn.textContent = 'Começar';
+  }
+
+  function repor() {
+    aCorrer = false;
+    clearInterval(timer);
+    plano = []; idx = 0;
+    phaseEl.textContent = 'PRONTO';
+    roundEl.innerHTML = '&nbsp;';
+    box.dataset.tipo = '';
+    startBtn.textContent = 'Começar';
+    timeEl.textContent = fmt(+$('work').value);
+  }
+
+  startBtn.addEventListener('click', comecar);
+  resetBtn.addEventListener('click', repor);
+
+  document.querySelectorAll('.presets .pillbtn').forEach((b) => {
+    b.addEventListener('click', () => {
+      $('work').value = b.dataset.w;
+      $('rest').value = b.dataset.r;
+      $('rounds').value = b.dataset.n;
+      $('prep').value = b.dataset.p;
+      document.querySelectorAll('.presets .pillbtn').forEach((x) => x.classList.toggle('on', x === b));
+      repor();
+    });
+  });
+
+  repor();
+</script>
+
+<style>
+  .lead { color: var(--muted); max-width: 560px; margin-top: 14px; }
+  .timer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(20px, 4vw, 40px);
+    align-items: start;
+  }
+  .display-box {
+    border: 1px solid var(--line-strong);
+    background: var(--panel);
+    padding: clamp(28px, 5vw, 56px);
+    text-align: center;
+    transition: border-color 0.2s ease;
+  }
+  .display-box[data-tipo='work'] { border-color: var(--amber); }
+  .display-box[data-tipo='rest'] { border-color: #446; }
+  .display-box[data-tipo='done'] { border-color: var(--amber); }
+  .phase {
+    font-family: var(--font-display);
+    font-size: 15px;
+    letter-spacing: 5px;
+    color: var(--faint);
+    margin: 0;
+  }
+  .display-box[data-tipo='work'] .phase { color: var(--amber); }
+  .time {
+    font-family: var(--font-display);
+    font-size: clamp(64px, 12vw, 110px);
+    line-height: 1;
+    color: var(--paper);
+    margin: 14px 0;
+  }
+  .round {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 22px;
+  }
+  .controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .config { display: grid; gap: 16px; }
+  .presets { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pillbtn {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .pillbtn:hover { border-color: var(--amber); color: var(--paper); }
+  .pillbtn.on { border-color: var(--amber); color: var(--amber); }
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  label {
+    display: grid;
+    gap: 6px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  input[type='number'] {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-size: 20px;
+    padding: 10px 12px;
+    width: 100%;
+  }
+  input[type='number']:focus { outline: 2px solid var(--amber); outline-offset: 2px; }
+  @media (max-width: 760px) {
+    .timer-grid { grid-template-columns: 1fr; }
+  }
+</style>

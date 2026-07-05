@@ -1,0 +1,230 @@
+/* ============================================================
+   THE PLASMIK REPORT — Sistema visual "Field Manual"
+   Preto dominante · typewriter nos títulos · âmbar cirúrgico
+   ============================================================ */
+
+:root {
+  /* Cores */
+  --ink: #0a0a0a;        /* fundo base */
+  --panel: #111111;      /* cartões e blocos */
+  --line: #222222;       /* divisórias */
+  --line-strong: #2a2a2a;/* bordas de cartão */
+  --paper: #f4f1ea;      /* texto principal — papel sujo */
+  --muted: #b4b2a9;      /* texto secundário */
+  --faint: #888780;      /* legendas e carimbos apagados */
+  --amber: #ef9f27;      /* ação e destaque — usar pouco */
+  --amber-ink: #412402;  /* texto sobre âmbar */
+  --blood: #8a1e1e;      /* alerta editorial — raríssimo */
+
+  /* Tipografia */
+  --font-display: 'Special Elite', 'Courier New', monospace;
+  --font-body: 'Archivo', system-ui, sans-serif;
+
+  /* Layout */
+  --max: 1080px;
+  --pad: clamp(20px, 5vw, 48px);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--ink);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Textura de "scanline" subtil no fundo dos heróis */
+.grain {
+  background: repeating-linear-gradient(
+    0deg,
+    var(--ink),
+    var(--ink) 3px,
+    #0c0c0c 3px,
+    #0c0c0c 4px
+  );
+}
+
+/* ---------- Tipografia ---------- */
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--paper);
+  margin: 0;
+}
+
+h1 { font-size: clamp(30px, 5.5vw, 46px); }
+h2 { font-size: clamp(22px, 3.5vw, 30px); }
+h3 { font-size: 19px; line-height: 1.35; }
+
+p { margin: 0 0 1em; }
+
+a {
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+a:hover, a:focus-visible { border-bottom-color: var(--amber); }
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+::selection { background: var(--amber); color: var(--amber-ink); }
+
+/* Carimbo / eyebrow — a etiqueta editorial do manual */
+.stamp {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin: 0 0 14px;
+}
+.stamp--faint { color: var(--faint); letter-spacing: 3px; }
+
+/* ---------- Layout ---------- */
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+.section {
+  padding-top: clamp(36px, 6vw, 64px);
+  padding-bottom: clamp(36px, 6vw, 64px);
+  border-bottom: 1px solid var(--line);
+}
+
+/* ---------- Botões ---------- */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn--amber {
+  background: var(--amber);
+  color: var(--amber-ink);
+}
+.btn--amber:hover, .btn--amber:focus-visible {
+  background: var(--paper);
+  color: var(--ink);
+  border-bottom-color: transparent;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--paper);
+  border-color: #444;
+}
+.btn--ghost:hover, .btn--ghost:focus-visible {
+  border-color: var(--amber);
+  color: var(--amber);
+  border-bottom-color: var(--amber);
+}
+
+/* ---------- Cartões ---------- */
+
+.card {
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  padding: 22px;
+  transition: border-color 0.15s ease;
+}
+a.card { color: inherit; border-bottom: 1px solid var(--line-strong); display: block; }
+.card:hover { border-color: var(--amber); }
+
+.card .num {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--amber);
+  display: block;
+}
+
+.card .card-title {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 10px 0 6px;
+  color: var(--paper);
+}
+
+.card p { font-size: 14px; color: var(--faint); margin: 0; }
+
+/* Selo de data das edições */
+.date-badge {
+  min-width: 68px;
+  text-align: center;
+  border: 1px solid var(--amber);
+  padding: 8px 10px;
+  flex-shrink: 0;
+}
+.date-badge .n {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--amber);
+  display: block;
+  line-height: 1.1;
+}
+.date-badge .d {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ---------- Prosa dos artigos ---------- */
+
+.prose {
+  max-width: 68ch;
+  font-size: 17px;
+  color: var(--muted);
+}
+.prose h2, .prose h3 { color: var(--paper); margin: 1.6em 0 0.6em; }
+.prose strong { color: var(--paper); font-weight: 500; }
+.prose blockquote {
+  margin: 1.6em 0;
+  padding: 4px 0 4px 20px;
+  border-left: 2px solid var(--amber);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+.prose hr { border: none; border-top: 1px solid var(--line); margin: 2em 0; }
+.prose img { max-width: 100%; filter: grayscale(1) contrast(1.15); }
+
+/* ---------- Imagens ---------- */
+
+.bw { filter: grayscale(1) contrast(1.15) brightness(1.25); display: block; width: 100%; }
+
+/* ---------- Acessibilidade ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}

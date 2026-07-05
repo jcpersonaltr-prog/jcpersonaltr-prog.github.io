@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+// SUBSTITUI o link abaixo pelo link de convite da tua Comunidade WhatsApp.
+const whatsappLink = 'https://chat.whatsapp.com/IDyz0bCKuQuAvGVN5IxTrG?mode=gi_t';
+---
+
+<Base title="Comunidade" description="A comunidade do The Plasmik Report: treino, nutrição e pensamento crítico, sem ruído e sem poses.">
+  <section class="section grain">
+    <div class="wrap">
+      <p class="stamp">05 — Comunidade</p>
+      <h1>Sem ruído. Sem poses.<br />Só gente que treina.</h1>
+      <p class="lead">
+        A comunidade do Report vive no WhatsApp: perguntas diretas, discussão de treino
+        e nutrição, e acesso antecipado às edições. Sem spam, sem vendedores de milagres.
+      </p>
+      <a class="btn btn--amber" href={whatsappLink} target="_blank" rel="noopener">Entrar na comunidade</a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <p class="stamp stamp--faint">Regras de campo</p>
+      <ol class="rules">
+        <li><strong>Treina primeiro, fala depois.</strong> Perguntas de quem faz valem mais do que opiniões de quem assiste.</li>
+        <li><strong>Zero milagres.</strong> Suplementos mágicos, protocolos secretos e atalhos são banidos à primeira.</li>
+        <li><strong>Respeito absoluto.</strong> Discute ideias com dureza, trata pessoas com dignidade.</li>
+      </ol>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lead { color: var(--muted); max-width: 540px; margin: 16px 0 28px; }
+  .rules {
+    list-style: none;
+    counter-reset: rule;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+    max-width: 640px;
+  }
+  .rules li {
+    counter-increment: rule;
+    border: 1px solid var(--line-strong);
+    background: var(--panel);
+    padding: 18px 20px 18px 64px;
+    position: relative;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .rules li::before {
+    content: '0' counter(rule);
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--amber);
+  }
+  .rules strong { color: var(--paper); font-weight: 500; }
+</style>

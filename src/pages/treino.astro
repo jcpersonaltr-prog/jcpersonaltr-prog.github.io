@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+
+const ferramentas = [
+  {
+    href: '/treino/fit-cards/',
+    title: 'Fit Cards',
+    desc: 'Cartões de treino Método Perfektus, filtráveis por categoria e nível — de Calisténicos a CrossFit.',
+  },
+  {
+    href: '/treino/temporizador/',
+    title: 'Temporizador',
+    desc: 'Perfektus Timer: HIIT, Tabata, EMOM e intervalos personalizados, com sinais sonoros.',
+  },
+  {
+    href: '/treino/tabela-nutricional/',
+    title: 'Tabela Nutricional',
+    desc: 'Base de dados pesquisável de alimentos, com ordenação por macro e download em CSV.',
+  },
+  {
+    href: '/treino/desafios/',
+    title: 'Desafios Mensais',
+    desc: 'Um desafio novo todos os meses. Um objetivo, um mês, zero desculpas.',
+  },
+];
+---
+
+<Base title="Treino" description="Fit cards, temporizador, tabela nutricional e desafios mensais do Método Perfektus.">
+  <section class="section grain">
+    <div class="wrap">
+      <p class="stamp">02 — Treino</p>
+      <h1>Ferramentas de campo.</h1>
+      <p class="lead">Tudo o que precisas para treinar a sério. Escolhe a ferramenta.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap grid">
+      {ferramentas.map((f) => (
+        <a class="card" href={f.href}>
+          <span class="card-title">{f.title}</span>
+          <p>{f.desc}</p>
+          <span class="go">Abrir →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lead { color: var(--muted); max-width: 520px; margin-top: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .go {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+</style>

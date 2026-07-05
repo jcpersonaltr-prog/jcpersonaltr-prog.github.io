@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const edicoes = await getCollection('relatorio');
+  return edicoes.map((e) => ({
+    params: { slug: e.id },
+    props: { edicao: e },
+  }));
+}
+
+const { edicao } = Astro.props;
+const { Content } = await render(edicao);
+const fmt = edicao.data.data
+  .toLocaleDateString('pt-PT', { day: '2-digit', month: 'long', year: 'numeric' });
+---
+
+<Base title={edicao.data.titulo} description={edicao.data.resumo}>
+  <article>
+    <header class="section grain">
+      <div class="wrap">
+        <p class="stamp">Edição Nº {String(edicao.data.numero).padStart(2, '0')} — {fmt}</p>
+        <h1>{edicao.data.titulo}</h1>
+        <p class="resumo">{edicao.data.resumo}</p>
+      </div>
+    </header>
+    <div class="section">
+      <div class="wrap">
+        <div class="prose">
+          <Content />
+        </div>
+        <p class="back"><a href="/relatorio/">← Voltar ao arquivo</a></p>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .resumo {
+    color: var(--muted);
+    max-width: 560px;
+    margin-top: 16px;
+    font-size: 17px;
+  }
+  .back {
+    margin-top: 48px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+</style>
