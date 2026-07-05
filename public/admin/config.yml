@@ -66,7 +66,7 @@ collections:
             widget: list
             summary: "{{fields.tipo}} — {{fields.titulo}}"
             fields:
-              - { name: ytId, label: ID do YouTube, widget: string, hint: "No URL youtube.com/watch?v=ABC123, o ID é ABC123." }
+              - { name: ytId, label: Link ou ID do YouTube, widget: string, hint: "Cola o link completo do YouTube (youtu.be/..., watch?v=..., Shorts) ou só o ID — ambos funcionam." }
               - { name: titulo, label: Título, widget: string }
               - { name: tipo, label: Tipo, widget: select, options: [Podcast, Clip] }
 
