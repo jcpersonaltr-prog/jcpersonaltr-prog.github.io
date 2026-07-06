@@ -126,3 +126,20 @@ collections:
                   - { name: nome, label: Exercício, widget: string }
                   - { name: dose, label: Dose diária, widget: string }
               - { name: atual, label: "É o desafio ativo?", widget: boolean, default: false, hint: "Só um desafio deve estar ativo de cada vez." }
+
+  - name: paginas
+    label: Páginas
+    files:
+      - name: sobre
+        label: Página Sobre
+        file: src/data/sobre.json
+        fields:
+          - { name: titulo, label: Título da página, widget: string }
+          - { name: biografia, label: Biografia, widget: text, hint: "Separa parágrafos com uma linha em branco. Usa **texto** para negrito." }
+          - name: cartoes
+            label: Cartões laterais
+            widget: list
+            summary: "{{fields.titulo}}"
+            fields:
+              - { name: titulo, label: Título do cartão, widget: string }
+              - { name: texto, label: Texto, widget: text }

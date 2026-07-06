@@ -1,39 +1,35 @@
 ---
 import Base from '../layouts/Base.astro';
+import dados from '../data/sobre.json';
+
+// Página gerida no painel /admin (Páginas → Sobre).
+// A biografia aceita parágrafos (linha em branco entre eles) e **negrito**.
+function paraHtml(texto: string): string {
+  return texto
+    .split(/\n\s*\n/)
+    .map((p) => `<p>${p.trim().replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`)
+    .join('');
+}
+const biografiaHtml = paraHtml(dados.biografia);
 ---
 
 <Base title="Sobre" description="João Carvalho — personal trainer, fundador do Método Perfektus e autor do The Plasmik Report.">
   <section class="section grain">
     <div class="wrap">
       <p class="stamp">06 — Sobre</p>
-      <h1>Quem escreve isto.</h1>
+      <h1>{dados.titulo}</h1>
     </div>
   </section>
   <section class="section">
     <div class="wrap cols">
-      <div class="prose">
-        <p>
-          <strong>João Carvalho.</strong> Personal trainer com título profissional IPDJ,
-          fundador do Método Perfektus, baseado no Porto. Treino atletas de competição,
-          populações clínicas, seniores e praticantes de desportos de combate —
-          e escrevo sobre o que a indústria do fitness prefere não explicar.
-        </p>
-        <p>
-          O The Plasmik Report nasceu de uma convicção simples: a maior parte do ruído
-          no fitness existe para te vender alguma coisa. Aqui não. Aqui é treino,
-          nutrição e pensamento crítico — com fontes, com prática, sem poses.
-        </p>
-        <p><em>Substitui este texto pela tua biografia definitiva quando quiseres.</em></p>
-      </div>
+      <div class="prose" set:html={biografiaHtml} />
       <aside>
-        <div class="card">
-          <span class="card-title">Fit After 40</span>
-          <p>O manual para treinar a sério depois dos 40. Brevemente disponível na loja.</p>
-        </div>
-        <div class="card">
-          <span class="card-title">Trabalhar comigo</span>
-          <p>Acompanhamento presencial no Porto e programas à distância. Contacto direto pela comunidade ou redes sociais.</p>
-        </div>
+        {dados.cartoes.map((c) => (
+          <div class="card">
+            <span class="card-title">{c.titulo}</span>
+            <p>{c.texto}</p>
+          </div>
+        ))}
       </aside>
     </div>
   </section>
