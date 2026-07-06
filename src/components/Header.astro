@@ -23,7 +23,7 @@ const isActive = (href: string) => pathname.startsWith(href);
         </a>
       ))}
       <a href="/sobre/" class:list={['navlink', { active: isActive('/sobre/') }]}>Sobre</a>
-      <a href={glob.lojaUrl} class="navlink loja" target="_blank" rel="noopener">Loja</a>
+      <a href={glob.lojaUrl} class:list={['navlink', 'loja', { active: isActive('/loja/') }]} target={glob.lojaUrl.startsWith('http') ? '_blank' : undefined} rel="noopener">Loja</a>
     </nav>
   </div>
 </header>

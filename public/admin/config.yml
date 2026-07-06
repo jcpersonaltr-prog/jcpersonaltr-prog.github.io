@@ -200,6 +200,26 @@ collections:
           - { name: videos, label: Vídeos, widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
           - { name: galeria, label: Galeria, widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
 
+      - name: loja
+        label: Loja
+        file: src/data/loja.json
+        fields:
+          - { name: titulo, label: Título da página, widget: string }
+          - { name: lead, label: Texto de apresentação, widget: text }
+          - name: itens
+            label: Ofertas
+            widget: list
+            summary: "{{fields.tag}} — {{fields.titulo}}"
+            fields:
+              - { name: tag, label: Etiqueta, widget: string, hint: "Ex.: Pack, Programa, Promo", required: false }
+              - { name: titulo, label: Título da oferta, widget: string }
+              - { name: descricao, label: Descrição, widget: text }
+              - { name: preco, label: Preço, widget: string, hint: "Texto livre: 49€, desde 30€/mês, Sob consulta…", required: false }
+              - { name: imagem, label: Imagem, widget: image, required: false }
+              - { name: botaoRotulo, label: Texto do botão, widget: string }
+              - { name: botaoLink, label: Link do botão, widget: string, hint: "WhatsApp, email (mailto:...), página de pagamento — o que fizer sentido." }
+              - { name: destaque, label: "Destacar (moldura âmbar)?", widget: boolean, default: false }
+
       - name: sobre
         label: Página Sobre
         file: src/data/sobre.json

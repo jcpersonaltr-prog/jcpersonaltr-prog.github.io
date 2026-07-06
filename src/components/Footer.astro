@@ -27,7 +27,7 @@ const year = new Date().getFullYear();
     <p class="brand">THE PLASMIK REPORT<span style="color: var(--amber)">.</span> <span class="tag">{glob.tagline}</span></p>
     <nav aria-label="Redes sociais">
       {glob.sociais.map((s) => (
-        <a href={s.url} target="_blank" rel="noopener">{s.rotulo}</a>
+        <a href={s.url} target={s.url.startsWith('http') ? '_blank' : undefined} rel="noopener">{s.rotulo}</a>
       ))}
     </nav>
     <p class="copy">© {year} João Carvalho · Método Perfektus. Todos os direitos reservados.</p>

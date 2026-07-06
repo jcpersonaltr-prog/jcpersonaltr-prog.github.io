@@ -2,7 +2,7 @@
   "subscricaoFrase": "Recebe cada edição antes de toda a gente.",
   "buttondownUsername": "theplasmikreport",
   "tagline": "Fitness uncovered — Método Perfektus",
-  "lojaUrl": "https://perfektus-gym.wixsite.com/linkstore",
+  "lojaUrl": "/loja/",
   "sociais": [
     {
       "rotulo": "YouTube",
@@ -14,7 +14,7 @@
     },
     {
       "rotulo": "Loja",
-      "url": "https://perfektus-gym.wixsite.com/linkstore"
+      "url": "/loja/"
     }
   ]
 }
