@@ -1,10 +1,11 @@
 ---
+import glob from '../data/global.json';
 const year = new Date().getFullYear();
 ---
 
 <footer>
   <div class="wrap subscribe">
-    <p class="display cta-text">Recebe cada edição antes de toda a gente.</p>
+    <p class="display cta-text">{glob.subscricaoFrase}</p>
     <!--
       LIGAÇÃO DA NEWSLETTER:
       Cria conta gratuita em https://buttondown.com e substitui
@@ -13,7 +14,7 @@ const year = new Date().getFullYear();
       adiciona o atributo data-netlify="true" ao form.
     -->
     <form
-      action="https://buttondown.com/api/emails/embed-subscribe/theplasmikreport"
+      action={`https://buttondown.com/api/emails/embed-subscribe/${glob.buttondownUsername}`}
       method="post"
       target="_blank"
     >
@@ -23,11 +24,11 @@ const year = new Date().getFullYear();
     </form>
   </div>
   <div class="wrap bottom">
-    <p class="brand">THE PLASMIK REPORT<span style="color: var(--amber)">.</span> <span class="tag">Fitness uncovered — Método Perfektus</span></p>
+    <p class="brand">THE PLASMIK REPORT<span style="color: var(--amber)">.</span> <span class="tag">{glob.tagline}</span></p>
     <nav aria-label="Redes sociais">
-      <a href="https://www.youtube.com/@theplasmikreport" target="_blank" rel="noopener">YouTube</a>
-      <a href="https://www.instagram.com/joaocarvalho_pt" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://perfektus-gym.wixsite.com/linkstore" target="_blank" rel="noopener">Loja</a>
+      {glob.sociais.map((s) => (
+        <a href={s.url} target="_blank" rel="noopener">{s.rotulo}</a>
+      ))}
     </nav>
     <p class="copy">© {year} João Carvalho · Método Perfektus. Todos os direitos reservados.</p>
   </div>

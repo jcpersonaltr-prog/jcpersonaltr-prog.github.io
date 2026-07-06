@@ -1,7 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
+import textos from '../../data/textos.json';
 
 import dados from '../../data/desafios.json';
+const t = textos.desafios;
 const desafios = dados.desafios;
 
 const atual = desafios.find((d) => d.atual);
@@ -12,8 +14,8 @@ const arquivo = desafios.filter((d) => !d.atual);
   <section class="section grain">
     <div class="wrap">
       <p class="stamp">02 — Treino / Desafios</p>
-      <h1>Um mês. Um objetivo.<br />Zero desculpas.</h1>
-      <p class="lead">Todos os meses, um desafio novo. Partilha o progresso na comunidade.</p>
+      <h1>{t.titulo}</h1>
+      <p class="lead">{t.lead}</p>
     </div>
   </section>
 

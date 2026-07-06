@@ -1,13 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
+import textos from '../../data/textos.json';
+const t = textos.tabela;
 ---
 
 <Base title="Tabela Nutricional" description="Base de dados nutricional pesquisável do The Plasmik Report — valores por 100 g.">
   <section class="section grain">
     <div class="wrap">
       <p class="stamp">02 — Treino / Tabela Nutricional</p>
-      <h1>Os números dos alimentos.</h1>
-      <p class="lead">Pesquisa qualquer alimento e ordena por macro clicando no cabeçalho da coluna. Valores por 100 g.</p>
+      <h1>{t.titulo}</h1>
+      <p class="lead">{t.lead}</p>
     </div>
   </section>
 

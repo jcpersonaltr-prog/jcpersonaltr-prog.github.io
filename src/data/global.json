@@ -1,0 +1,20 @@
+{
+  "subscricaoFrase": "Recebe cada edição antes de toda a gente.",
+  "buttondownUsername": "theplasmikreport",
+  "tagline": "Fitness uncovered — Método Perfektus",
+  "lojaUrl": "https://perfektus-gym.wixsite.com/linkstore",
+  "sociais": [
+    {
+      "rotulo": "YouTube",
+      "url": "https://www.youtube.com/@theplasmikreport"
+    },
+    {
+      "rotulo": "Instagram",
+      "url": "https://www.instagram.com/joaocarvalho_pt"
+    },
+    {
+      "rotulo": "Loja",
+      "url": "https://perfektus-gym.wixsite.com/linkstore"
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
+import textos from '../../data/textos.json';
 import dados from '../../data/fitcards.json';
+const t = textos.fitcards;
 const cards = dados.cards;
 
 const categorias = ['Todas', ...new Set(cards.map((c) => c.categoria))];
@@ -11,8 +13,8 @@ const niveis = ['Todos', 'Iniciante', 'Intermédio', 'Avançado'];
   <section class="section grain">
     <div class="wrap">
       <p class="stamp">02 — Treino / Fit Cards</p>
-      <h1>Escolhe a tua arma.</h1>
-      <p class="lead">Cartões de treino do Método Perfektus. Filtra por categoria e nível — nomes dos exercícios sempre em inglês, como manda o manual.</p>
+      <h1>{t.titulo}</h1>
+      <p class="lead">{t.lead}</p>
     </div>
   </section>
 

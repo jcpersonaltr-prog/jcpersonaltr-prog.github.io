@@ -130,6 +130,76 @@ collections:
   - name: paginas
     label: Páginas
     files:
+      - name: homepage
+        label: Homepage
+        file: src/data/home.json
+        fields:
+          - { name: kicker, label: Etiqueta pequena (topo), widget: string }
+          - { name: titulo, label: Título do manifesto, widget: text, hint: "Usa Enter para quebrar a linha." }
+          - { name: lead, label: Texto de apresentação, widget: text }
+          - { name: botaoEdicao, label: Texto do botão principal, widget: string }
+          - { name: botaoComunidade, label: Texto do botão da comunidade, widget: string }
+          - { name: fotoAlt, label: Descrição da foto (acessibilidade), widget: string }
+          - { name: fotoLegenda, label: Legenda da foto, widget: string }
+          - { name: fotoEnquadramento, label: Enquadramento da foto, widget: string, hint: "Horizontal% Vertical%. Ex.: 80% 50% — sobe o primeiro valor para puxar o recorte para a direita." }
+          - name: seccoes
+            label: Cartões de secção
+            widget: list
+            summary: "{{fields.num}} — {{fields.titulo}}"
+            fields:
+              - { name: num, label: Número, widget: string }
+              - { name: titulo, label: Título, widget: string }
+              - { name: href, label: Link, widget: string, hint: "Só mudar se souberes o destino. Ex.: /treino/" }
+              - { name: desc, label: Descrição, widget: text }
+
+      - name: comunidade
+        label: Página Comunidade
+        file: src/data/comunidade.json
+        fields:
+          - { name: titulo, label: Título, widget: text, hint: "Enter quebra a linha." }
+          - { name: lead, label: Texto de apresentação, widget: text }
+          - { name: botao, label: Texto do botão, widget: string }
+          - { name: whatsappLink, label: Link de convite do WhatsApp, widget: string }
+          - { name: regrasTitulo, label: Título das regras, widget: string }
+          - name: regras
+            label: Regras
+            widget: list
+            summary: "{{fields.titulo}}"
+            fields:
+              - { name: titulo, label: Regra (negrito), widget: string }
+              - { name: texto, label: Explicação, widget: text }
+
+      - name: global
+        label: Definições gerais (rodapé e loja)
+        file: src/data/global.json
+        fields:
+          - { name: subscricaoFrase, label: Frase da subscrição (rodapé), widget: string }
+          - { name: buttondownUsername, label: Username do Buttondown, widget: string }
+          - { name: tagline, label: Tagline (rodapé), widget: string }
+          - { name: lojaUrl, label: Link da Loja (menu), widget: string }
+          - name: sociais
+            label: Redes sociais (rodapé)
+            widget: list
+            summary: "{{fields.rotulo}}"
+            fields:
+              - { name: rotulo, label: Nome, widget: string }
+              - { name: url, label: Link, widget: string }
+
+      - name: textos
+        label: Títulos das secções
+        file: src/data/textos.json
+        fields:
+          - { name: relatorio, label: Relatório (arquivo), widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
+          - { name: tinta, label: Tinta, widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
+          - { name: treino, label: Treino (hub), widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
+          - { name: media, label: Media (hub), widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
+          - { name: fitcards, label: Fit Cards, widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
+          - { name: temporizador, label: Temporizador, widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
+          - { name: tabela, label: Tabela Nutricional, widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
+          - { name: desafios, label: Desafios, widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
+          - { name: videos, label: Vídeos, widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
+          - { name: galeria, label: Galeria, widget: object, fields: [{ name: titulo, label: Título, widget: string }, { name: lead, label: Subtítulo, widget: text }] }
+
       - name: sobre
         label: Página Sobre
         file: src/data/sobre.json

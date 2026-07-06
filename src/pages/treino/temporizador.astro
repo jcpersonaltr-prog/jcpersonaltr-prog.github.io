@@ -1,13 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
+import textos from '../../data/textos.json';
+const t = textos.temporizador;
 ---
 
 <Base title="Temporizador" description="Perfektus Timer — temporizador HIIT, Tabata e intervalos, com sinais sonoros.">
   <section class="section grain">
     <div class="wrap">
       <p class="stamp">02 — Treino / Temporizador</p>
-      <h1>Perfektus Timer.</h1>
-      <p class="lead">Trabalho, descanso, rondas. Sinais sonoros nos últimos 3 segundos e em cada transição. Sem app, sem conta, sem desculpas.</p>
+      <h1>{t.titulo}</h1>
+      <p class="lead">{t.lead}</p>
     </div>
   </section>
 

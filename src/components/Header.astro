@@ -1,4 +1,5 @@
 ---
+import glob from '../data/global.json';
 const { pathname } = Astro.url;
 const links = [
   { num: '01', label: 'Relatório', href: '/relatorio/' },
@@ -22,7 +23,7 @@ const isActive = (href: string) => pathname.startsWith(href);
         </a>
       ))}
       <a href="/sobre/" class:list={['navlink', { active: isActive('/sobre/') }]}>Sobre</a>
-      <a href="https://perfektus-gym.wixsite.com/linkstore" class="navlink loja" target="_blank" rel="noopener">Loja</a>
+      <a href={glob.lojaUrl} class="navlink loja" target="_blank" rel="noopener">Loja</a>
     </nav>
   </div>
 </header>

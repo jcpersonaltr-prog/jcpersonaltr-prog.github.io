@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import textos from '../data/textos.json';
+const t = textos.treino;
 
 const ferramentas = [
   {
@@ -29,8 +31,8 @@ const ferramentas = [
   <section class="section grain">
     <div class="wrap">
       <p class="stamp">02 — Treino</p>
-      <h1>Ferramentas de campo.</h1>
-      <p class="lead">Tudo o que precisas para treinar a sério. Escolhe a ferramenta.</p>
+      <h1>{t.titulo}</h1>
+      <p class="lead">{t.lead}</p>
     </div>
   </section>
   <section class="section">

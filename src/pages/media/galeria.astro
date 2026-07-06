@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
+import textos from '../../data/textos.json';
 import dados from '../../data/galeria.json';
+const t = textos.galeria;
 
 // A galeria é gerida no painel /admin (Treino & Media → Galeria).
 // Cada item tem uma imagem e um grupo: "Fotos" (tratamento P&B) ou "Prop Art" (cores originais).
@@ -14,8 +16,8 @@ const grupos = [
   <section class="section grain">
     <div class="wrap">
       <p class="stamp">03 — Media / Galeria</p>
-      <h1>O arquivo visual.</h1>
-      <p class="lead">Fotografia tratada a preto e branco de alto contraste, e a propaganda visual do Report. Clica para ampliar.</p>
+      <h1>{t.titulo}</h1>
+      <p class="lead">{t.lead}</p>
     </div>
   </section>
 

@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
+import textos from '../../data/textos.json';
 import dados from '../../data/videos.json';
+const t = textos.videos;
 
 // Aceita o link completo do YouTube (youtu.be, watch?v=, shorts, embed,
 // com ou sem parâmetros ?si=...) OU apenas o ID de 11 caracteres.
@@ -22,8 +24,8 @@ const tipos = ['Todos', 'Podcast', 'Clip'];
   <section class="section grain">
     <div class="wrap">
       <p class="stamp">03 — Media / Vídeos</p>
-      <h1>Ver e ouvir.</h1>
-      <p class="lead">Podcasts completos e clips parciais. Clica na miniatura para reproduzir aqui mesmo.</p>
+      <h1>{t.titulo}</h1>
+      <p class="lead">{t.lead}</p>
     </div>
   </section>
 

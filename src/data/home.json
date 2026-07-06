@@ -1,0 +1,30 @@
+{
+  "kicker": "Manual de campo — Fitness uncovered",
+  "titulo": "O fitness sem filtros.\nSem ruído. Sem poses.",
+  "lead": "Treino, nutrição e pensamento crítico contra o mainstream da indústria. Escrito por quem treina pessoas reais — não algoritmos.",
+  "botaoEdicao": "Ler a última edição",
+  "botaoComunidade": "Entrar na comunidade",
+  "fotoAlt": "João Carvalho na sala de treino, retrato a preto e branco",
+  "fotoLegenda": "Método Perfektus — Porto",
+  "fotoEnquadramento": "80% 50%",
+  "seccoes": [
+    {
+      "num": "01",
+      "titulo": "Relatório",
+      "href": "/relatorio/",
+      "desc": "Newsletters, artigos e Truth Uncovered. O arquivo completo, agora legível e pesquisável."
+    },
+    {
+      "num": "02",
+      "titulo": "Treino",
+      "href": "/treino/",
+      "desc": "Fit cards, desafios mensais, temporizadores e tabela nutricional interativa."
+    },
+    {
+      "num": "04",
+      "titulo": "Tinta",
+      "href": "/tinta/",
+      "desc": "Reflexões, Leafs From a Dead Tree e princípios. A escrita por trás do treino."
+    }
+  ]
+}

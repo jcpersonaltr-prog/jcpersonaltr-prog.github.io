@@ -1,28 +1,27 @@
 ---
 import Base from '../layouts/Base.astro';
-// SUBSTITUI o link abaixo pelo link de convite da tua Comunidade WhatsApp.
-const whatsappLink = 'https://chat.whatsapp.com/IDyz0bCKuQuAvGVN5IxTrG?mode=gi_t';
+import dados from '../data/comunidade.json';
+
+// Textos e link do WhatsApp geridos no painel /admin (Páginas → Comunidade).
+const tituloLinhas = dados.titulo.split('\n');
 ---
 
 <Base title="Comunidade" description="A comunidade do The Plasmik Report: treino, nutrição e pensamento crítico, sem ruído e sem poses.">
   <section class="section grain">
     <div class="wrap">
       <p class="stamp">05 — Comunidade</p>
-      <h1>Sem ruído. Sem poses.<br />Só gente que treina.</h1>
-      <p class="lead">
-        A comunidade do Report vive no WhatsApp: perguntas diretas, discussão de treino
-        e nutrição, e acesso antecipado às edições. Sem spam, sem vendedores de milagres.
-      </p>
-      <a class="btn btn--amber" href={whatsappLink} target="_blank" rel="noopener">Entrar na comunidade</a>
+      <h1>{tituloLinhas.map((l, i) => (<>{i > 0 && <br />}{l}</>))}</h1>
+      <p class="lead">{dados.lead}</p>
+      <a class="btn btn--amber" href={dados.whatsappLink} target="_blank" rel="noopener">{dados.botao}</a>
     </div>
   </section>
   <section class="section">
     <div class="wrap">
-      <p class="stamp stamp--faint">Regras de campo</p>
+      <p class="stamp stamp--faint">{dados.regrasTitulo}</p>
       <ol class="rules">
-        <li><strong>Treina primeiro, fala depois.</strong> Perguntas de quem faz valem mais do que opiniões de quem assiste.</li>
-        <li><strong>Zero milagres.</strong> Suplementos mágicos, protocolos secretos e atalhos são banidos à primeira.</li>
-        <li><strong>Respeito absoluto.</strong> Discute ideias com dureza, trata pessoas com dignidade.</li>
+        {dados.regras.map((r) => (
+          <li><strong>{r.titulo}</strong> {r.texto}</li>
+        ))}
       </ol>
     </div>
   </section>

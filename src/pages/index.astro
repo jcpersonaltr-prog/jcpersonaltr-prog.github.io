@@ -1,7 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import dados from '../data/home.json';
 
+// Textos geridos no painel /admin (Páginas → Homepage).
 const edicoes = (await getCollection('relatorio')).sort((a, b) => b.data.numero - a.data.numero);
 const ultima = edicoes[0];
 const mes = ultima.data.data
@@ -9,53 +11,32 @@ const mes = ultima.data.data
   .replace('.', '')
   .toUpperCase();
 
-const seccoes = [
-  {
-    num: '01',
-    title: 'Relatório',
-    href: '/relatorio/',
-    desc: 'Newsletters, artigos e Truth Uncovered. O arquivo completo, agora legível e pesquisável.',
-  },
-  {
-    num: '02',
-    title: 'Treino',
-    href: '/treino/',
-    desc: 'Fit cards, desafios mensais, temporizadores e tabela nutricional interativa.',
-  },
-  {
-    num: '04',
-    title: 'Tinta',
-    href: '/tinta/',
-    desc: 'Reflexões, Leafs From a Dead Tree e princípios. A escrita por trás do treino.',
-  },
-];
+const tituloLinhas = dados.titulo.split('\n');
 ---
 
 <Base title="Início">
   <section class="hero grain">
     <div class="wrap hero-grid">
       <div>
-        <p class="stamp">Manual de campo — Fitness uncovered</p>
-        <h1>O fitness sem filtros.<br />Sem ruído. Sem poses.</h1>
-        <p class="lead">
-          Treino, nutrição e pensamento crítico contra o mainstream da indústria.
-          Escrito por quem treina pessoas reais — não algoritmos.
-        </p>
+        <p class="stamp">{dados.kicker}</p>
+        <h1>{tituloLinhas.map((l, i) => (<>{i > 0 && <br />}{l}</>))}</h1>
+        <p class="lead">{dados.lead}</p>
         <div class="actions">
-          <a class="btn btn--amber" href={`/relatorio/${ultima.id}/`}>Ler a última edição</a>
-          <a class="btn btn--ghost" href="/comunidade/">Entrar na comunidade</a>
+          <a class="btn btn--amber" href={`/relatorio/${ultima.id}/`}>{dados.botaoEdicao}</a>
+          <a class="btn btn--ghost" href="/comunidade/">{dados.botaoComunidade}</a>
         </div>
       </div>
       <figure class="hero-photo">
         <img
           src="/images/hero.jpg"
-          alt="João Carvalho na sala de treino, retrato a preto e branco"
+          alt={dados.fotoAlt}
           class="bw"
           width="640"
           height="800"
           loading="eager"
+          style={`object-position: ${dados.fotoEnquadramento};`}
         />
-        <figcaption>Método Perfektus — Porto</figcaption>
+        <figcaption>{dados.fotoLegenda}</figcaption>
       </figure>
     </div>
   </section>
@@ -79,10 +60,10 @@ const seccoes = [
 
   <section class="section">
     <div class="wrap grid-3">
-      {seccoes.map((s) => (
+      {dados.seccoes.map((s) => (
         <a class="card" href={s.href}>
           <span class="num">{s.num}</span>
-          <span class="card-title">{s.title}</span>
+          <span class="card-title">{s.titulo}</span>
           <p>{s.desc}</p>
         </a>
       ))}
@@ -109,7 +90,7 @@ const seccoes = [
   }
   .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
   .hero-photo { margin: 0; border: 1px solid var(--line-strong); padding: 10px; }
-  .hero-photo img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 80% 50%; }
+  .hero-photo img { aspect-ratio: 4 / 5; object-fit: cover; }
   .hero-photo figcaption {
     font-family: var(--font-display);
     font-size: 11px;

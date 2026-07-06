@@ -1,0 +1,21 @@
+{
+  "titulo": "Sem ruído. Sem poses.\nSó gente que treina.",
+  "lead": "A comunidade do Report vive no WhatsApp: perguntas diretas, discussão de treino e nutrição, e acesso antecipado às edições. Sem spam, sem vendedores de milagres.",
+  "botao": "Entrar na comunidade",
+  "whatsappLink": "https://chat.whatsapp.com/IDyz0bCKuQuAvGVN5IxTrG?mode=gi_t",
+  "regrasTitulo": "Regras de campo",
+  "regras": [
+    {
+      "titulo": "Treina primeiro, fala depois.",
+      "texto": "Perguntas de quem faz valem mais do que opiniões de quem assiste."
+    },
+    {
+      "titulo": "Zero milagres.",
+      "texto": "Suplementos mágicos, protocolos secretos e atalhos são banidos à primeira."
+    },
+    {
+      "titulo": "Respeito absoluto.",
+      "texto": "Discute ideias com dureza, trata pessoas com dignidade."
+    }
+  ]
+}

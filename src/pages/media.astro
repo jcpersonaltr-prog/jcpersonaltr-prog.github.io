@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import textos from '../data/textos.json';
+const t = textos.media;
 
 const areas = [
   {
@@ -19,8 +21,8 @@ const areas = [
   <section class="section grain">
     <div class="wrap">
       <p class="stamp">03 — Media</p>
-      <h1>Ver e ouvir.</h1>
-      <p class="lead">O Report também se ouve e também se vê.</p>
+      <h1>{t.titulo}</h1>
+      <p class="lead">{t.lead}</p>
     </div>
   </section>
   <section class="section">

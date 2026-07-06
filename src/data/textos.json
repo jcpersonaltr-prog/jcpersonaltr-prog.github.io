@@ -1,0 +1,42 @@
+{
+  "relatorio": {
+    "titulo": "O arquivo.",
+    "lead": "Todas as edições, artigos e Truth Uncovered. Do mais recente para o mais antigo."
+  },
+  "tinta": {
+    "titulo": "A escrita por trás do treino.",
+    "lead": "Reflexões, fragmentos e princípios. O lado do Report que não se mede em séries."
+  },
+  "treino": {
+    "titulo": "Ferramentas de campo.",
+    "lead": "Tudo o que precisas para treinar a sério. Escolhe a ferramenta."
+  },
+  "media": {
+    "titulo": "Ver e ouvir.",
+    "lead": "O Report também se ouve e também se vê."
+  },
+  "fitcards": {
+    "titulo": "Escolhe a tua arma.",
+    "lead": "Cartões de treino do Método Perfektus. Filtra por categoria e nível — nomes dos exercícios sempre em inglês, como manda o manual."
+  },
+  "temporizador": {
+    "titulo": "Perfektus Timer.",
+    "lead": "Trabalho, descanso, rondas. Sinais sonoros nos últimos 3 segundos e em cada transição. Sem app, sem conta, sem desculpas."
+  },
+  "tabela": {
+    "titulo": "Os números dos alimentos.",
+    "lead": "Pesquisa qualquer alimento e ordena por macro clicando no cabeçalho da coluna. Valores por 100 g."
+  },
+  "desafios": {
+    "titulo": "Um mês. Um objetivo. Zero desculpas.",
+    "lead": "Todos os meses, um desafio novo. Partilha o progresso na comunidade."
+  },
+  "videos": {
+    "titulo": "Ver e ouvir.",
+    "lead": "Podcasts completos e clips parciais. Clica na miniatura para reproduzir aqui mesmo."
+  },
+  "galeria": {
+    "titulo": "O arquivo visual.",
+    "lead": "Fotografia tratada a preto e branco de alto contraste, e a propaganda visual do Report. Clica para ampliar."
+  }
+}
