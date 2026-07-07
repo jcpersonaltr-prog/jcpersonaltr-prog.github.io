@@ -95,4 +95,4 @@ que a distância o permite.
 
 mínimo — não como objectivo de
 
-elite.
+elite.![](/images/uploads/Captura%20de%20ecr%C3%A3%202026-07-07%2C%20%C3%A0s%2005.10.52.png)
