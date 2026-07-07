@@ -5,7 +5,7 @@
     {
       "tag": "Pack",
       "titulo": "Pack Arranque — 4 sessões",
-      "descricao": "Quatro sessões de treino personalizado para arrancar com o pé direito. Avaliação inicial incluída. (Oferta de exemplo — edita ou apaga no painel.)",
+      "descricao": "Pack inicial",
       "preco": "—",
       "imagem": "/images/loja/exemplo-pack.jpg",
       "botaoRotulo": "Pedir informações",
@@ -15,7 +15,7 @@
     {
       "tag": "Programa",
       "titulo": "Programa à distância — 8 semanas",
-      "descricao": "Plano de treino completo com acompanhamento semanal, onde quer que estejas. (Oferta de exemplo — edita ou apaga no painel.)",
+      "descricao": "treinos on line",
       "preco": "—",
       "imagem": "/images/loja/exemplo-programa.jpg",
       "botaoRotulo": "Pedir informações",
