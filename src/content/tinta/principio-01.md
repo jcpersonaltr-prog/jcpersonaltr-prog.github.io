@@ -89,4 +89,4 @@ E amanhã volto a fazê-lo. De boa vontade.
 
 E amanhã volto a fazê-lo. De boa vontade.
 
-_João Carvalho_
+_João Carvalho_![](/images/uploads/Captura%20de%20ecr%C3%A3%202026-07-07%2C%20%C3%A0s%2005.09.20.png)
