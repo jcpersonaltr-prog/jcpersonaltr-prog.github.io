@@ -101,4 +101,4 @@ tens contigo mesmo.
 
 E talvez seja essa a diferença entre treinar durante três meses e treinar para o
 
-resto da vida.
+resto da vida.![](/images/uploads/Captura%20de%20ecr%C3%A3%202026-07-07%2C%20%C3%A0s%2005.10.03.png)
