@@ -4,20 +4,20 @@
   "itens": [
     {
       "tag": "Pack",
-      "titulo": "Pack Arranque — 4 sessões",
+      "titulo": "Pack Arranque",
       "descricao": "Pack inicial",
       "preco": "sob consulta",
-      "imagem": "/images/loja/exemplo-pack.jpg",
+      "imagem": "/images/uploads/pack.webp",
       "botaoRotulo": "Pedir informações",
       "botaoLink": "https://chat.whatsapp.com/IDyz0bCKuQuAvGVN5IxTrG?mode=gi_t",
       "destaque": true
     },
     {
       "tag": "Programa",
-      "titulo": "Programa à distância — 8 semanas",
+      "titulo": "Pack online",
       "descricao": "treinos on line",
       "preco": "sob consulta",
-      "imagem": "/images/loja/exemplo-programa.jpg",
+      "imagem": "/images/uploads/pack.webp",
       "botaoRotulo": "Pedir informações",
       "botaoLink": "https://chat.whatsapp.com/IDyz0bCKuQuAvGVN5IxTrG?mode=gi_t",
       "destaque": false
