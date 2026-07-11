@@ -13,7 +13,7 @@ crescer. Solução? Confundir o músculo. Trocar tudo, sempre.
 
 Soa lógico. Está errado.
 
-O Q U E A C I Ê N C I A D I Z D E FA C T O
+O  Q U E  A  C I Ê N C I A  D I Z  D E  FA C T O
 
 O tecido muscular não tem memória cognitiva — não "reconhece" um exercício e decide preguiçar por repetição. O
 
@@ -35,7 +35,7 @@ Isto não significa que variar seja inútil. Significa que a variação não é 
 
 colateral simpático de um plano bem estruturado.
 
-O N D E A " C O N F U S Ã O M U S C U L A R " FA L H A N A P R Á T I C A
+O N D E  A  " C O N F U S Ã O M U S C U L A R " FA L H A  N A  P R Á T I C A
 
 Trocar de treino toda a semana tem um custo real: nunca chegas a repetir o suficiente um movimento para o dominar
 
@@ -43,7 +43,7 @@ tecnicamente, nunca acumulas dados fiáveis sobre a tua progressão (porque o ex
 
 semanas), e é fácil confundir "estou exausto" com "estou a progredir" — são coisas diferentes.
 
-A A LT E R N AT I VA : E S T R U T U R A , N Ã O N O V I D A D E
+A  A LT E R N AT I VA : E S T R U T U R A , N Ã O  N O V I D A D E
 
 É exatamente aqui que Método Perfektus diverge do mainstream. Mentzer (Heavy Duty) e Waterbury (abordagem
 
@@ -57,7 +57,7 @@ músculo não precisa de ser surpreendido. Precisa de ser desafiado de forma men
 
 do que a última vez que fiz isto?'"
 
-E N T Ã O P O R Q U E É Q U E E U VA R I O O S T R E I N O S ?
+E N T Ã O  P O R Q U E  É  Q U E  E U  VA R I O  O S  T R E I N O S  ?
 
 Não é por causa do músculo. É por causa da cabeça.
 
