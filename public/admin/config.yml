@@ -139,9 +139,10 @@ collections:
           - { name: lead, label: Texto de apresentação, widget: text }
           - { name: botaoEdicao, label: Texto do botão principal, widget: string }
           - { name: botaoComunidade, label: Texto do botão da comunidade, widget: string }
+          - { name: foto, label: Fotografia principal, widget: image, hint: "Ideal em formato vertical 4:5 (ex.: 1200×1500). O tratamento P&B é automático." }
           - { name: fotoAlt, label: Descrição da foto (acessibilidade), widget: string }
           - { name: fotoLegenda, label: Legenda da foto, widget: string }
-          - { name: fotoEnquadramento, label: Enquadramento da foto, widget: string, hint: "Horizontal% Vertical%. Ex.: 80% 50% — sobe o primeiro valor para puxar o recorte para a direita." }
+          - { name: fotoEnquadramento, label: Enquadramento da foto, widget: string, hint: "Abre a homepage com ?ajustar no fim do endereço, arrasta a foto até estar alinhada, e cola aqui o valor copiado." }
           - name: seccoes
             label: Cartões de secção
             widget: list
