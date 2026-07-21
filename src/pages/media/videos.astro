@@ -15,8 +15,8 @@ function extrairId(valor: string): string {
 }
 
 const lista = dados.videos
-  .map((v) => ({ ...v, ytId: extrairId(v.ytId) }))
-  .filter((v) => v.ytId !== '');
+  .map((v) => ({ ...v, ytId: extrairId(v.ytId || '') }))
+  .filter((v) => v.ficheiro || v.ytId !== '');
 const tipos = ['Todos', 'Podcast', 'Clip'];
 ---
 
@@ -44,10 +44,19 @@ const tipos = ['Todos', 'Podcast', 'Clip'];
       <div class="grid">
         {lista.map((v) => (
           <figure class="video card" data-tipo={v.tipo}>
-            <button class="thumb" data-yt={v.ytId} aria-label={`Reproduzir: ${v.titulo}`}>
-              <img src={`https://i.ytimg.com/vi/${v.ytId}/hqdefault.jpg`} alt="" loading="lazy" class="bw" />
-              <span class="play" aria-hidden="true">►</span>
-            </button>
+            {v.ficheiro ? (
+              <video
+                controls
+                preload="metadata"
+                src={encodeURI(v.ficheiro)}
+                poster={v.capa ? encodeURI(v.capa) : undefined}
+              />
+            ) : (
+              <button class="thumb" data-yt={v.ytId} aria-label={`Reproduzir: ${v.titulo}`}>
+                <img src={`https://i.ytimg.com/vi/${v.ytId}/hqdefault.jpg`} alt="" loading="lazy" class="bw" />
+                <span class="play" aria-hidden="true">►</span>
+              </button>
+            )}
             <figcaption>
               <span class="pill pill--amber">{v.tipo}</span>
               <h3>{v.titulo}</h3>
@@ -134,6 +143,7 @@ const tipos = ['Todos', 'Podcast', 'Clip'];
     z-index: -1;
   }
   .video :global(iframe) { width: 100%; aspect-ratio: 16 / 9; border: none; display: block; }
+  .video video { width: 100%; aspect-ratio: 16 / 9; background: #000; display: block; }
   figcaption { padding: 14px 16px 16px; }
   .pill {
     display: inline-block;

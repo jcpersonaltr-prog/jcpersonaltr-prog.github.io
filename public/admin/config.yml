@@ -66,7 +66,9 @@ collections:
             widget: list
             summary: "{{fields.tipo}} — {{fields.titulo}}"
             fields:
-              - { name: ytId, label: Link ou ID do YouTube, widget: string, hint: "Cola o link completo do YouTube (youtu.be/..., watch?v=..., Shorts) ou só o ID — ambos funcionam." }
+              - { name: ytId, label: Link ou ID do YouTube, widget: string, required: false, hint: "Cola o link completo ou só o ID. Deixa vazio se enviares um ficheiro. Dica: vídeos 'Não listados' no YouTube não aparecem no canal mas funcionam aqui." }
+              - { name: ficheiro, label: Ficheiro de vídeo (alternativa ao YouTube), widget: file, required: false, media_folder: /public/videos, public_folder: /videos, hint: "MP4 recomendado. Máximo 100 MB (limite do GitHub); ideal abaixo de 50 MB — só para clips curtos. Vídeos longos vão para o YouTube." }
+              - { name: capa, label: Imagem de capa (opcional, para vídeos por ficheiro), widget: image, required: false }
               - { name: titulo, label: Título, widget: string }
               - { name: tipo, label: Tipo, widget: select, options: [Podcast, Clip] }
 
