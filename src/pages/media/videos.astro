@@ -14,6 +14,9 @@ function extrairId(valor: string): string {
   return /^[A-Za-z0-9_-]{11}$/.test(puro) ? puro : '';
 }
 
+// Percent-encoding completo (o encodeURI deixa passar # e ?, que partem o URL)
+const urlSegura = (c: string) => encodeURI(c).replace(/#/g, '%23').replace(/\?/g, '%3F');
+
 const lista = dados.videos
   .map((v) => ({ ...v, ytId: extrairId(v.ytId || '') }))
   .filter((v) => v.ficheiro || v.ytId !== '');
@@ -48,8 +51,8 @@ const tipos = ['Todos', 'Podcast', 'Clip'];
               <video
                 controls
                 preload="metadata"
-                src={encodeURI(v.ficheiro)}
-                poster={v.capa ? encodeURI(v.capa) : undefined}
+                src={urlSegura(v.ficheiro)}
+                poster={v.capa ? urlSegura(v.capa) : undefined}
               />
             ) : (
               <button class="thumb" data-yt={v.ytId} aria-label={`Reproduzir: ${v.titulo}`}>
