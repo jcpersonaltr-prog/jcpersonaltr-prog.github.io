@@ -1,6 +1,6 @@
 ---
 titulo: O peso de querer salvar quem não pediu para ser salvo
-numero: 9
+numero: 10
 data: 2026-08-02
 resumo: 'Há uma frase que repito a mim mesmo há anos, sempre que um cliente falha um objetivo que eu sabia que era possível: "eu dei-lhe tudo o que precisava para conseguir."'
 tags: []
