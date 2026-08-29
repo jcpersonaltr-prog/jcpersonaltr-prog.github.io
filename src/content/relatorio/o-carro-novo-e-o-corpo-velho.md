@@ -2,7 +2,7 @@
 titulo: O Carro Novo e o Corpo Velho
 numero: 12
 data: 2026-08-29
-resumo: Há um erro de cálculo que quase ninguém questiona, porque é socialmente aceite
+resumo: Quando o teu corpo deixa de ser o teu reflexo
 tags: []
 ---
 
