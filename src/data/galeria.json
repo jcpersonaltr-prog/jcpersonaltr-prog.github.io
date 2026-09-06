@@ -328,6 +328,13 @@
       "legenda": "",
       "titulo": "",
       "pdf": ""
+    },
+    {
+      "imagem": "/images/uploads/MITOVSFACTO1.png",
+      "grupo": "Mito vs Facto",
+      "legenda": "Suar muito = queimar mais gordura ?",
+      "titulo": "",
+      "pdf": "/pdfs/1.pdf"
     }
   ]
 }
