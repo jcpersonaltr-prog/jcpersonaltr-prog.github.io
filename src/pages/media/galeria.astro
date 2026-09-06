@@ -9,6 +9,7 @@ const t = textos.galeria;
 const grupos = [
   { nome: 'Fotos', imagens: dados.itens.filter((i) => i.grupo === 'Fotos') },
   { nome: 'Prop Art', imagens: dados.itens.filter((i) => i.grupo === 'Prop Art') },
+  { nome: 'Mito vs Facto', imagens: dados.itens.filter((i) => i.grupo === 'Mito vs Facto') },
 ];
 ---
 
@@ -34,13 +35,26 @@ const grupos = [
           {g.imagens.length === 0 && (
             <p class="vazio">Sem imagens ainda — adiciona-as no painel /admin, em Treino & Media → Galeria.</p>
           )}
-          <div class="grid">
-            {g.imagens.map((item) => (
-              <button class="celula" data-src={encodeURI(item.imagem)}>
-                <img src={encodeURI(item.imagem)} alt={item.legenda ?? ''} loading="lazy" class:list={[{ bw: g.nome === 'Fotos' }]} />
-              </button>
-            ))}
-          </div>
+          {g.nome === 'Mito vs Facto' ? (
+            <div class="grid grid-mvf">
+              {g.imagens.map((item) => (
+                <a class="celula-mvf" href={encodeURI(item.pdf)} target="_blank" rel="noopener">
+                  <div class="capa-mvf">
+                    <img src={encodeURI(item.imagem)} alt={item.titulo ?? ''} loading="lazy" />
+                  </div>
+                  <p class="titulo-mvf">{item.titulo}</p>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div class="grid">
+              {g.imagens.map((item) => (
+                <button class="celula" data-src={encodeURI(item.imagem)}>
+                  <img src={encodeURI(item.imagem)} alt={item.legenda ?? ''} loading="lazy" class:list={[{ bw: g.nome === 'Fotos' }]} />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </div>
@@ -105,6 +119,31 @@ const grupos = [
   .celula:hover { border-color: var(--amber); }
   .celula img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .vazio { color: var(--faint); font-size: 14px; }
+
+  .grid-mvf { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .celula-mvf {
+    display: block;
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    background: var(--panel);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+  .celula-mvf:hover { border-color: var(--amber); }
+  .capa-mvf { aspect-ratio: 1; overflow: hidden; }
+  .capa-mvf img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .titulo-mvf {
+    color: var(--paper);
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    padding: 12px 14px;
+    margin: 0;
+    border-top: 1px solid var(--line-strong);
+  }
+  @media (max-width: 720px) {
+    .grid-mvf { grid-template-columns: 1fr; }
+  }
   dialog {
     background: var(--ink);
     border: 1px solid var(--line-strong);
