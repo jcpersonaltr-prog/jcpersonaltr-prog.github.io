@@ -332,9 +332,23 @@
     {
       "imagem": "/images/uploads/MITOVSFACTO1.png",
       "grupo": "Mito vs Facto",
-      "legenda": "Suar muito = queimar mais gordura ?",
-      "titulo": "",
+      "legenda": "",
+      "titulo": "Suar muito = queimar mais gordura ?",
       "pdf": "/pdfs/1.pdf"
+    },
+    {
+      "imagem": "/images/uploads/CARDIO EM JEJUM.jpg",
+      "grupo": "Mito vs Facto",
+      "legenda": "",
+      "titulo": "Cardio em jejum",
+      "pdf": "/pdfs/CARDIO EM JEJUM.pdf"
+    },
+    {
+      "imagem": "/images/uploads/3.jpg",
+      "grupo": "Mito vs Facto",
+      "legenda": "",
+      "titulo": "Treinar abdominais todos os dias dá definição ?",
+      "pdf": "/pdfs/3.pdf"
     }
   ]
 }
