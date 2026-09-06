@@ -105,9 +105,11 @@ collections:
             widget: list
             summary: "{{fields.grupo}} — {{fields.imagem}}"
             fields:
-              - { name: imagem, label: Imagem, widget: image }
-              - { name: grupo, label: Grupo, widget: select, options: [Fotos, "Prop Art"], hint: "Fotos ganham tratamento P&B automático; Prop Art mantém as cores." }
-              - { name: legenda, label: Legenda (opcional), widget: string, required: false }
+              - { name: imagem, label: Imagem (capa), widget: image }
+              - { name: grupo, label: Grupo, widget: select, options: [Fotos, "Prop Art", "Mito vs Facto"], hint: "Fotos ganham tratamento P&B automático; Prop Art mantém as cores; Mito vs Facto mostra o título por baixo e abre o PDF." }
+              - { name: legenda, label: Legenda (opcional, só Fotos/Prop Art), widget: string, required: false }
+              - { name: titulo, label: Título (só Mito vs Facto), widget: string, required: false, hint: "Aparece por baixo da imagem, ex.: Edição 04 — Alongar antes de treinar?" }
+              - { name: pdf, label: Ficheiro PDF (só Mito vs Facto), widget: file, required: false, media_folder: /public/pdfs, public_folder: /pdfs, hint: "Carrega aqui o PDF da edição." }
 
       - name: desafios
         label: Desafios mensais (página Treino)
