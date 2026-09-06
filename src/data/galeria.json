@@ -328,6 +328,13 @@
       "legenda": "",
       "titulo": "",
       "pdf": ""
+    },
+    {
+      "imagem": "/images/uploads/MITOVSFACTO1.png",
+      "grupo": "Mito vs Facto",
+      "legenda": "",
+      "titulo": "",
+      "pdf": "/pdfs/MITOVSFACTO#1.pdf"
     }
   ]
 }
